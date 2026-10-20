@@ -1,17 +1,17 @@
 {
  "giorni": 577,
- "trade_python": 468,
+ "trade_python": 466,
  "trade_tester": 468,
- "quota_stessa_decisione": 1.0,
- "trade_in_comune": 468,
+ "quota_stessa_decisione": 0.9965337954939342,
+ "trade_in_comune": 466,
  "stesso_verso_in_comune": 1.0,
- "corr_R": 0.9998856791784051,
- "R_medio_python_lordo": 0.15866521303695277,
- "R_medio_tester": 0.14095619658119654,
+ "corr_R": 0.9998847536393979,
+ "R_medio_python": 0.1437088732968671,
+ "R_medio_tester": 0.12592660944206008,
  "diff_prezzo_in_mediana": 0.0,
  "uscite_python": {
   "stop": 381,
-  "fine sessione": 55,
+  "fine sessione": 53,
   "target": 32
  },
  "soglie": {
