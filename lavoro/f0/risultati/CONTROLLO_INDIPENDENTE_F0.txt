@@ -1,0 +1,84 @@
+OK   sha256 BRENT m1 - Pepperstone.csv
+OK   sha256 DXY FTMO m1.csv
+OK   sha256 GER40 FTMO m1.csv
+OK   sha256 GER40 Pepperstone m1.csv
+OK   sha256 NAS100 m1 - FTPepperstone.csv
+OK   sha256 UK100 FTMO m1.csv
+OK   sha256 UK100 Pepperstone m1.csv
+OK   sha256 US100 m1 - FTMO.csv
+OK   sha256 US500 m1 - FTMO.csv
+OK   sha256 US500 m1 - Pepperstone.csv
+OK   sha256 USDX pepperstone m1.csv
+OK   sha256 USOIL m1 - FTMO.csv
+OK   sha256 VIX Pepperstone m1.csv
+OK   sha256 XAG-USD FTMO m1.csv
+OK   sha256 XAG-USD Pepperstone m1.csv
+OK   sha256 XAU-USD FTMO m1.csv
+OK   sha256 XAU-USD Pepperstone m1.csv
+OK   barre UK100 FTMO m1 2017
+OK   barre UK100 FTMO m1 2018
+OK   barre UK100 FTMO m1 2019
+OK   barre UK100 FTMO m1 2020
+OK   barre UK100 FTMO m1 2021
+OK   barre UK100 FTMO m1 2022
+OK   barre UK100 FTMO m1 2023
+OK   barre UK100 FTMO m1 2024
+OK   barre UK100 FTMO m1 2025
+OK   barre UK100 FTMO m1 2026
+OK   inizio M1 UK100 FTMO m1 = 2021-09-14
+OK   barre UK100 Pepperstone m1 2017
+OK   barre UK100 Pepperstone m1 2018
+OK   barre UK100 Pepperstone m1 2019
+OK   barre UK100 Pepperstone m1 2020
+OK   barre UK100 Pepperstone m1 2021
+OK   barre UK100 Pepperstone m1 2022
+OK   barre UK100 Pepperstone m1 2023
+OK   barre UK100 Pepperstone m1 2024
+OK   barre UK100 Pepperstone m1 2025
+OK   barre UK100 Pepperstone m1 2026
+OK   inizio M1 UK100 Pepperstone m1 = 2017-06-03
+OK   barre GER40 FTMO m1 2017
+OK   barre GER40 FTMO m1 2018
+OK   barre GER40 FTMO m1 2019
+OK   barre GER40 FTMO m1 2020
+OK   barre GER40 FTMO m1 2021
+OK   barre GER40 FTMO m1 2022
+OK   barre GER40 FTMO m1 2023
+OK   barre GER40 FTMO m1 2024
+OK   barre GER40 FTMO m1 2025
+OK   barre GER40 FTMO m1 2026
+OK   inizio M1 GER40 FTMO m1 = 2021-12-28
+OK   barre GER40 Pepperstone m1 2017
+OK   barre GER40 Pepperstone m1 2018
+OK   barre GER40 Pepperstone m1 2019
+OK   barre GER40 Pepperstone m1 2020
+OK   barre GER40 Pepperstone m1 2021
+OK   barre GER40 Pepperstone m1 2022
+OK   barre GER40 Pepperstone m1 2023
+OK   barre GER40 Pepperstone m1 2024
+OK   barre GER40 Pepperstone m1 2025
+OK   barre GER40 Pepperstone m1 2026
+OK   inizio M1 GER40 Pepperstone m1 = 2020-06-11
+OK   barre US500 m1 - Pepperstone 2017
+OK   barre US500 m1 - Pepperstone 2018
+OK   barre US500 m1 - Pepperstone 2019
+OK   barre US500 m1 - Pepperstone 2020
+OK   barre US500 m1 - Pepperstone 2021
+OK   barre US500 m1 - Pepperstone 2022
+OK   barre US500 m1 - Pepperstone 2023
+OK   barre US500 m1 - Pepperstone 2024
+OK   barre US500 m1 - Pepperstone 2025
+OK   barre US500 m1 - Pepperstone 2026
+OK   inizio M1 US500 m1 - Pepperstone = 2020-07-11
+OK   fuso UK100 FTMO m1 settimane nor: picco 10:00
+OK   fuso UK100 FTMO m1 settimane dis: picco 11:00
+OK   fuso UK100 Pepperstone m1 settimane nor: picco 10:00
+OK   fuso UK100 Pepperstone m1 settimane dis: picco 11:00
+OK   RSI Wilder barre.py = ciclo esplicito (max diff < 1e-9)
+OK   RSI Wilder = pandas ewm dopo 300 barre di riscaldamento (diff < 1e-7)
+OK   ATR Wilder barre.py = ciclo esplicito
+OK   barra cash 08:00 UK = 10:00 server (normali)
+OK   barra cash 08:00 UK = 11:00 server (disallineate)
+OK   barre cash per giorno: moda 9
+
+TOTALE: 82/82 OK
