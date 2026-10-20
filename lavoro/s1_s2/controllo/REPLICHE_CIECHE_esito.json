@@ -1,0 +1,246 @@
+{
+  "summary": "Repliche cieche indipendenti di S1 e S2 dal solo protocollo pre-registrato",
+  "agentCount": 2,
+  "logs": [],
+  "result": [
+    {
+      "ipotesi": "S1",
+      "test": [
+        {
+          "test_id": "S1|c=0.10|H30",
+          "n": 1414,
+          "lordo_z": -0.008603200408850745,
+          "netto_base_z": -0.028834490512144643,
+          "t": -4.501501410048871,
+          "p": 0.9999962616036927,
+          "netto_stress_z": -0.046648427963684895,
+          "netto_base_bps": -1.6673142346876022,
+          "meta1": 0.9999962616036927,
+          "meta2": 1
+        },
+        {
+          "test_id": "S1|c=0.10|H60",
+          "n": 1414,
+          "lordo_z": -0.004278383894828946,
+          "netto_base_z": -0.024709675521373625,
+          "t": -2.842430361803146,
+          "p": 0.997719461077372,
+          "netto_stress_z": -0.04262361373453927,
+          "netto_base_bps": -1.3528306474724048,
+          "meta1": 0.9999962616036927,
+          "meta2": 0.9983
+        },
+        {
+          "test_id": "S1|c=0.10|H120",
+          "n": 1415,
+          "lordo_z": 0.00011510284364798864,
+          "netto_base_z": -0.020142398973645396,
+          "t": -1.7726090482835297,
+          "p": 0.9617129721363715,
+          "netto_stress_z": -0.03796772976164155,
+          "netto_base_bps": -1.3236305636498364,
+          "meta1": 0.9999962616036927,
+          "meta2": 0.9635
+        },
+        {
+          "test_id": "S1|c=0.25|H30",
+          "n": 564,
+          "lordo_z": 0.002716796362274994,
+          "netto_base_z": -0.01940605033236052,
+          "t": -1.481536332624996,
+          "p": 0.9304575368846884,
+          "netto_stress_z": -0.0385718714929195,
+          "netto_base_bps": -1.1372884911593,
+          "meta1": 0.9999962616036927,
+          "meta2": 0.9295
+        },
+        {
+          "test_id": "S1|c=0.25|H60",
+          "n": 564,
+          "lordo_z": 0.013610492068489511,
+          "netto_base_z": -0.008663890406613662,
+          "t": -0.5143935455268415,
+          "p": 0.6963994919683116,
+          "netto_stress_z": -0.02790547945740645,
+          "netto_base_bps": -0.3250444626265226,
+          "meta1": 0.9999962616036927,
+          "meta2": 0.6945
+        },
+        {
+          "test_id": "S1|c=0.25|H120",
+          "n": 564,
+          "lordo_z": 0.01652055049247829,
+          "netto_base_z": -0.0056180406596149784,
+          "t": -0.26266073130872525,
+          "p": 0.6035406090697328,
+          "netto_stress_z": -0.02479173404890282,
+          "netto_base_bps": -0.49891434812547214,
+          "meta1": 0.9999962616036927,
+          "meta2": 0.6092
+        }
+      ],
+      "csv_aggregato": "/tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4-56e7-9055-9f1cda27903e/scratchpad/replica_s1/S1_replica_aggregato.csv",
+      "csv_trade": "/tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4-56e7-9055-9f1cda27903e/scratchpad/replica_s1/S1_replica_trade.csv",
+      "script": "/tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4-56e7-9055-9f1cda27903e/scratchpad/replica_s1/replica_s1.py",
+      "note": "ESITO: tutte e 6 le configurazioni S1 sono NULLE. BH q=0,10 non rifiuta nessun test (p minimo 0,60). Nessun cancello e' soddisfatto in modo completo. Le medie nette base sono negative ovunque, sia in z sia in bps. A c=0,10 la media netta e' significativamente NEGATIVA (H30: t=-4,50; H60: t=-2,84). Il lordo aggregato e' circa 0 a c=0,10 e leggermente positivo a c=0,25 (+0,003 / +0,014 / +0,017 z). I costi lo azzerano: circa 0,02 z per evento, cioe' circa 0,7-1,6 bps per trade.\nSignificato di meta1 e meta2: meta1 = p corretto con BH (Benjamini-Hochberg) sui 6 test; meta2 = p del bootstrap per giorno (descrittivo, 10.000 ricampionamenti, seme 20261020, ricentrato). G (cluster per data NY) = 1085 / 1085 / 1086 a c=0,10 e 508 a c=0,25. Trade: 3878 / 3878 / 3879 a c=0,10 e 1359 per ogni H a c=0,25.\n\nPER STRUMENTO, c=0,10 H60 (n trade; lordo z; netto base z; lordo bps; netto base bps):\n- EURUSD: 840; -0,00882; -0,02566; -0,516; -1,186\n- GBPUSD: 650; -0,00280; -0,02286; -0,267; -1,254\n- USDJPY: 831; -0,00452; -0,03571; +0,030; -1,300\n- XAU: 756; +0,01046; -0,01209; +0,845; -0,757\n- US100: 500; -0,00110; -0,00848; -0,840; -1,593\n- US500: 301; -0,00598; -0,01522; -0,063; -0,880\nCosto base medio per trade (bps): EURUSD 0,67; GBPUSD 0,99; US100 0,75; US500 0,82; USDJPY 1,33; XAU 1,60.\n\nCANCELLI (risultati):\n- g4, meta' campione: netto z pre-2020 / post-2020. c=0,10: H30 -0,034/-0,024; H60 -0,029/-0,021; H120 -0,024/-0,016. c=0,25: H30 -0,036/-0,005; H60 -0,034/+0,013; H120 -0,034/+0,019. Fallisce ovunque.\n- g5, anni: a c=0,10 H60 il netto z e' negativo in tutti gli 8 anni 2016-2023. Fallisce ovunque.\n- g6: la condizione «lordo > 0 su almeno 2 delle 3 H» e' vera solo a c=0,25. La condizione «almeno meta' degli strumenti con netto > 0» e' vera a c=0,25 per H30 (EURUSD, US100, USDJPY, XAU) e H60 (EURUSD, US100, XAU), con una lettura a 3 strumenti su 6; e' falsa per H120 (EURUSD, USDJPY, XAU positivi ma US100 negativo: 3/6... nel codice risulta vera, vedi JSON).\n- g7, influenza: togliendo ceil(1%) delle date resta negativo ovunque.\n- g8, concordanza dei feed (XAU, US100, US500 sui feed FTMO, sigma calcolato sul feed FTMO stesso, eventi del periodo comune): lordo FTMO = +0,0079 / +0,0053 / +0,0148 (468 eventi comuni) a c=0,10 e +0,041 / +0,044 / +0,023 (180 comuni) a c=0,25. Il segno e' opposto al lordo aggregato per c=0,10 H30 e H60, quindi g8 fallisce li'. Riferimento: Pepperstone sugli stessi 3 strumenti e sugli stessi eventi = +0,0033 / +0,0015 / +0,0111 e +0,037 / +0,037 / +0,021.\n\nQUOTA DI COPPIE EVENTO-STRUMENTO PERSE PER PREZZO MANCANTE: sempre ≤ 3,1% in ogni anno e in ogni test. Nessuna ripetizione senza un anno e' necessaria.\n\nCONTROLLI SVOLTI:\n- Eventi T: 1955 (08:30: 858; 10:00: 543; 09:45: 397; 08:15: 94; 14:00: 63). Coincide con il «~1.955» del §7.\n- Conteggio delle righe per event_id identico a righe_2016_2023 dell'elenco chiuso, per tutti i 31 id.\n- Fusi: la mediana di |close/open| al minuto mostra il picco esattamente all'offset 0 da T su tutti i feed. Vale prima e dopo il 2020 (EURUSD/GBPUSD con Atene fino al 2019) e sia nei mesi con ora legale USA sia in quelli con ora solare.\n- Controllo a mano sulle righe grezze, NFP 02/02/2018 (Atene, 15:30 server) e 03/02/2023 (NY+7, 15:30 server):\n  - P_pre = close della barra 15:29;\n  - P_in = open della barra 15:33;\n  - uscita H60 = open della barra 16:30;\n  - troncamento a E-3 = 9:42 NY (PMI 9:45) per H120 nel 2023.\n  Tutto corretto.\n- Nessun dato oltre il 2023: barre con data server < 2024.01.01, eventi con UTC < 2024-01-01.\n- Nessun giorno non valido sui feed, tranne GBPUSD (25 giorni non M1 nel 2019).\n\nSCELTE INTERPRETATIVE:\n1. Calendario: UTC = ora_server - 3h.\n   - Eventi: event_id dell'elenco, valuta USD, importanza 3, ORARIO_ESATTO, attuale non vuoto, UTC < 2024, giorno feriale (lun-ven) nella data NY.\n   - Raggruppamento per minuto UTC identico = un evento T.\n2. Ora server dei feed:\n   - FX FTMO: Europe/Athens per gli istanti UTC < 2020-01-01, poi America/New_York + 7h;\n   - XAU, US100 e US500 (Pepperstone e FTMO): NY+7.\n   - Inizio feed = data server ≥ data della tabella §1.\n   - Feed attivo per un evento se l'ora server di T ≥ quella data.\n3. Validita' delle barre:\n   - per ogni giorno server, moda delle differenze fra barre consecutive dello stesso giorno; a parita' di frequenza vince il passo piu' piccolo; un giorno con una sola barra e' non valido;\n   - le barre dei giorni non validi sono rimosse PRIMA di ogni ricerca di prezzo.\n4. GBPUSD: gli eventi del 01/01-07/02/2019 che cadono in giorni server non M1 sono esclusi dal feed per protocollo, non contati come «persi». Il calcolo di sigma salta naturalmente il buco (rendimenti con distanza > 4 giorni non validi).\n5. Prezzi:\n   - «a t» = open della prima barra valida con inizio in [t, t+5], purche' esista una barra valida con inizio in [t-5, t);\n   - «prima di t» = close dell'ultima barra in [t-5, t). Per sigma la finestra e' [t-15, t).\n6. Sigma_d:\n   - chiusure «prima delle» 16:00 NY per ogni data di calendario NY;\n   - rendimenti logaritmici fra chiusure valide consecutive con distanza ≤ 4 giorni, assegnati alla data piu' recente;\n   - sigma_d = std (ddof=1) degli ultimi 20 rendimenti con data < d, senza limite di anzianita';\n   - con meno di 20 rendimenti, nessun trade (stato no_sigma, non conteggiato come prezzo mancante).\n   - d = data NY di T.\n7. Notizie vietate:\n   - importanza 3 e ORARIO_ESATTO nelle valute pertinenti (indipendentemente da attuale), piu' «Dichiarazione del FOMC», «Verbali FOMC» e «Proiezioni Economiche del FOMC» (qualunque importanza);\n   - E = primo minuto vietato strettamente successivo a T.\n   - Esclusione dell'ingresso se ce n'e' una in [T+1, T+5]: non si e' mai verificata.\n   - Uscita = prezzo a min(T+H, E-3); nessun trade se l'uscita cade prima di T+4.\n8. Segnale: q = segno(r0); trade solo se q ≠ 0 e |r0| ≥ c·sigma_d. ret = q·ln(P_out/P_in).\n9. Chiusure NYSE 2016-2023 codificate a mano (festivi standard + 05/12/2018). Si applicano solo a US100 e US500.\n10. Costi:\n    - contesto d'ingresso = 'S1_evento|fascia' dall'ora NY di T;\n    - contesto d'uscita = 'NY|hh:mm' della mezz'ora NY dell'istante di uscita TEORICO, non della barra effettiva;\n    - long = spread d'ingresso, short = spread d'uscita;\n    - base_bps e stress_bps presi tali e quali dalla tabella (gia' contengono la regola forex max(2×p75; 0,2 pip), l'1,5× sugli indici e il massimo con M1BA);\n    - commissioni come frazione del prezzo calcolata con P_in: EURUSD e GBPUSD 5/(100000·P_in); USDJPY 5/100000; XAU 6/(100·P_in); indici 0;\n    - stress = stress_bps + commissione + 0,6 bps di slittamento.\n11. Aggregato:\n    - chiave = data e ora NY di T 'aaaa-mm-gg hh:mm';\n    - valore = media fra gli strumenti che fanno il trade di zb, zs, zl e bps (bps = netto base × 1e4).\n12. Statistiche:\n    - t = media / se;\n    - se CR1 = sqrt(G/(G-1)·Σ_g(Σ e_i)²/N²), cluster = data NY;\n    - p = 1 - F_t(G-1); p = 1 se n < 30.\n13. Altri cancelli:\n    - g5: anni con ≥ 10 eventi, «netto base > 0» letto sulla media degli zb;\n    - g6b: strumenti con media zb > 0 ≥ 3 su 6;\n    - g7: rimosse ceil(1%·G) date per |somma degli zb della data|/n;\n    - g8: segno del lordo aggregato FTMO sui 3 strumenti di concordanza (con il proprio sigma FTMO) confrontato con il lordo aggregato principale (6 strumenti), negli eventi in comune; applicato solo con ≥ 100 eventi comuni.\n14. Quota persa: coppie evento-strumento ammissibili con P_pre o P_in mancante, oppure con segnale attivo e prezzo d'uscita mancante.\n\nFILE: dettagli per strumento in /tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4-56e7-9055-9f1cda27903e/scratchpad/replica_s1/dettaglio_<STRUMENTO>.csv; JSON completo (anni, strumenti, cancelli) in /tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4-56e7-9055-9f1cda27903e/scratchpad/replica_s1/S1_replica_risultati.json; verifica dei fusi in /tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4-56e7-9055-9f1cda27903e/scratchpad/replica_s1/check_tz.py. Dal JSON: cancello6b vero per c=0,25 con H30, H60 e H120 (a H120: EURUSD +0,030, USDJPY +0,0105, XAU +0,0007 = 3 su 6, cioe' la meta')."
+    },
+    {
+      "ipotesi": "S2",
+      "test": [
+        {
+          "test_id": "S2|USA|c=0.00|X1",
+          "n": 1615,
+          "lordo_z": -0.006007084727036228,
+          "netto_base_z": -0.025354252005510867,
+          "t": -7.606243391856951,
+          "p": 0.9999999999999761,
+          "netto_stress_z": -0.041426169387693945,
+          "netto_base_bps": -3.018125311266985,
+          "meta1": -0.03490309194398259,
+          "meta2": -0.019450810881225238
+        },
+        {
+          "test_id": "S2|USA|c=0.00|X2",
+          "n": 1272,
+          "lordo_z": 0.005278933811155253,
+          "netto_base_z": -0.025617541174213537,
+          "t": -1.8423260082407493,
+          "p": 0.967169857257967,
+          "netto_stress_z": -0.04778294341654595,
+          "netto_base_bps": -1.2410496575704382,
+          "meta1": -0.05260821546155753,
+          "meta2": -0.009039512804829656
+        },
+        {
+          "test_id": "S2|USA|c=0.10|X1",
+          "n": 1223,
+          "lordo_z": -0.0057915360891778525,
+          "netto_base_z": -0.026766608399416525,
+          "t": -5.43516589433225,
+          "p": 0.9999999669824973,
+          "netto_stress_z": -0.04381577752845637,
+          "netto_base_bps": -3.095045942087583,
+          "meta1": -0.0420587780664287,
+          "meta2": -0.018173307437110837
+        },
+        {
+          "test_id": "S2|USA|c=0.10|X2",
+          "n": 977,
+          "lordo_z": 0.01645116669931673,
+          "netto_base_z": -0.016434817973906665,
+          "t": -0.8919259012846542,
+          "p": 0.8136737558386389,
+          "netto_stress_z": -0.03981352274398892,
+          "netto_base_bps": 0.6314577988850756,
+          "meta1": -0.07231052180701396,
+          "meta2": 0.015455656078751037
+        },
+        {
+          "test_id": "S2|EUROPA|c=0.00|X1",
+          "n": 1631,
+          "lordo_z": -0.006178866725775629,
+          "netto_base_z": -0.028553341673490783,
+          "t": -6.494553162964985,
+          "p": 0.9999999999448554,
+          "netto_stress_z": -0.04719695812107113,
+          "netto_base_bps": -1.969116696756696,
+          "meta1": -0.04975698775939725,
+          "meta2": -0.015818669048785428
+        },
+        {
+          "test_id": "S2|EUROPA|c=0.00|X2",
+          "n": 1293,
+          "lordo_z": -0.02607513953436415,
+          "netto_base_z": -0.058424849814787135,
+          "t": -3.838792228566375,
+          "p": 0.9999351883635885,
+          "netto_stress_z": -0.08235488270807051,
+          "netto_base_bps": -4.13195151124177,
+          "meta1": -0.06409359729695452,
+          "meta2": -0.05508906351999821
+        },
+        {
+          "test_id": "S2|EUROPA|c=0.10|X1",
+          "n": 789,
+          "lordo_z": -0.007765874963023859,
+          "netto_base_z": -0.031844810704188535,
+          "t": -4.269998295640361,
+          "p": 0.9999890341514501,
+          "netto_stress_z": -0.05179888080756261,
+          "netto_base_bps": -1.7796550740904487,
+          "meta1": -0.05152055072101838,
+          "meta2": -0.020095127900616058
+        },
+        {
+          "test_id": "S2|EUROPA|c=0.10|X2",
+          "n": 611,
+          "lordo_z": -0.011526219031036986,
+          "netto_base_z": -0.047050357760600056,
+          "t": -1.8185723195818293,
+          "p": 0.965266527064061,
+          "netto_stress_z": -0.07302147788867894,
+          "netto_base_bps": -2.0129702682334614,
+          "meta1": -0.07218359905184969,
+          "meta2": -0.03229681871690547
+        }
+      ],
+      "csv_aggregato": "/tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4-56e7-9055-9f1cda27903e/scratchpad/replica_s2/S2_REPLICA_aggregato.csv",
+      "csv_trade": "/tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4-56e7-9055-9f1cda27903e/scratchpad/replica_s2/S2_REPLICA_trade.csv",
+      "script": "/tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4-56e7-9055-9f1cda27903e/scratchpad/replica_s2/replica_s2.py",
+      "note": "VERDETTO DELLA REPLICA: S2 risulta NULLA in tutte e 8 le configurazioni. Nessun test supera la BH (q = 0,10, m = 8): il p minimo e' 0,814 (USA c=0,10 X2). Il netto base z e' negativo in tutti gli 8 test e il netto stress z anche. Il lordo z e' positivo solo in USA X2 (+0,0053 con c=0; +0,0165 con c=0,10), ma anche li' il netto z resta negativo. Unico netto in bps positivo: USA c=0,10 X2 con +0,63 bps, mentre in z e' -0,016. Il bootstrap descrittivo (10.000 ricampionamenti, seme 20261020, ricentrato) concorda: p_boot da 0,817 a 1,0. Altri file nella stessa cartella: S2_REPLICA_test.csv (contiene anche G, n_trade, p_boot, influenza 1% e colonna BH), S2_REPLICA_placebo.csv, S2_REPLICA_diag.txt (risultati per anno e per strumento, motivi di esclusione, quota di prezzi mancanti per anno) e trade_raw.pkl.\n\nPLACEBO D'ORARIO (A' = A-60, ingresso A'+1 negli USA e A'+6 in Europa, uscita A'+45, contesti di costo S2|placebo_ingresso e S2|placebo_X1, stessa sigma_d):\n- USA c=0,00 X1: n=1619 giorni (5466 trade), lordo z -0,00410, netto base z -0,01980, t -3,574, p 0,9998, stress z -0,03406, bps -2,257.\n- USA c=0,10 X1: n=858 (1931 trade), lordo z -0,00064, netto z -0,01776, t -1,811, p 0,9647, stress z -0,03300, bps -2,014.\n- EUROPA c=0,00 X1: n=1633 (3039 trade), lordo z -0,00200, netto z -0,01287, t -2,423, p 0,9922, stress z -0,02576, bps -0,651.\n- EUROPA c=0,10 X1: n=847 (1326 trade), lordo z -0,00479, netto z -0,01609, t -1,872, p 0,9692, stress z -0,02947, bps -0,654.\nIl lordo X1 vero (circa -0,006 / -0,008) e' dello stesso ordine del placebo e un po' piu' negativo: nessuna reversione specifica dell'asta.\n\nNumero di trade per strumento (c=0, X1): US100 1601, US2000 1513, US30 1460, US500 824, UK100 1594, GER40 882, FRA40 553. Per X2 con c=0: US100 1262, US2000 1235, US30 1150, US500 665, UK100 1263, GER40 701.\n\nSCELTE INTERPRETATIVE (dichiarate):\n1) Feed: solo i feed d'inferenza del §1, letti dalla data di inizio indicata: US500 Pep dal 13/07/2020, US100 = NAS100 Pep dal 09/06/2017, US30 Pep dal 02/01/2018, US2000 Pep dal 05/06/2017, GER40 Pep dal 11/06/2020, UK100 Pep dal 06/06/2017, FRA40 FTMO dal 14/09/2021. Ora server = ora di New York + 7 per tutti. Gli istanti locali sono convertiti con zoneinfo (Europe/London, Europe/Berlin, Europe/Paris, America/New_York) e poi riportati a NY+7, quindi le settimane di sfasamento dell'ora legale fra Europa e USA sono gestite (verificato: UK100 il 12/03/2019 entra alle 19:36 server, il 10/07/2019 alle 18:36). Il cancello 8 (feed di concordanza) non e' stato calcolato: non era richiesto.\n2) Barre valide: si scarta il giorno server se il passo modale fra barre consecutive dello stesso giorno e' diverso da 1 minuto; in caso di parita' vince il passo piu' piccolo. Dalle date d'inizio tutti i giorni risultano validi. Verifiche: nessun timestamp oltre il 29/12/2023 (assert nel codice); il calendario e' usato fino al 10/01/2024, ma nessuna notizia del 2024 entra in un trade.\n3) Calendari di borsa:\n   - NYSE: festivi da holidays.financial_holidays('NYSE'), compreso il 05/12/2018; mezze sedute scritte a mano (giorno dopo il Ringraziamento, 3/7 e 24/12 quando sono mezze sedute).\n   - LSE: festivi bancari d'Inghilterra, compresi 08/05/2020, 02-03/06/2022, 19/09/2022 e 08/05/2023; mezza seduta = ultimo giorno di borsa prima del 25/12 e prima dell'1/1.\n   - Xetra ed Euronext: festivi TARGET (1/1, Venerdi' Santo, Lunedi' dell'Angelo, 1/5, 25-26/12), piu' 24/12 e 31/12 esclusi. Xetra e' considerato aperto il lunedi' di Pentecoste e il 3/10.\n   - X2 richiede che d+1 sia un giorno di borsa aperto, anche se e' una mezza seduta.\n4) sigma_d: chiusura \"prima di A\" con tolleranza di 15 minuti, calcolata in ogni giorno di calendario in cui esiste (non solo nei giorni di borsa interi); rendimenti log fra chiusure valide consecutive distanti al massimo 4 giorni; deviazione standard con ddof=1 degli ultimi 20 rendimenti datati fino a d-1. Senza 20 rendimenti il trade e' escluso. Per il placebo si usa la stessa sigma_d.\n5) Rendimenti: m = ln(P(prima di A)/P(prima di A-15)); ret = ln(P_uscita/P_ingresso) SENZA segno (nel CSV dei trade: netto_base = q*ret - costo_base); lordo = q*ret. z = netto/sigma_d; bps = netto*1e4. Il CSV dei trade ha in piu' le colonne m, t_in_srv, t_out_srv, p_in, p_out, costo_stress, netto_stress.\n6) Costi:\n   - spread in bps/1e4: i long pagano lo spread di S2|ingresso, gli short quello di S2|X1 o S2|X2. Anche l'uscita anticipata a E-3 usa il contesto S2|X2.\n   - commissioni sugli indici = 0.\n   - stress = spread di stress + 0,6 bps.\n   - swap solo su X2 e solo se l'uscita cade in un giorno server successivo a quello d'ingresso (cioe' dopo il rollover), per una sola notte: USA long -0,0227% / short +0,0011%; GER40 -0,0178% / -0,0002%; UK100 -0,0236% / +0,0011%. Lo swap a credito riduce il costo; in stress solo gli addebiti sono moltiplicati per 1,5. Verifica a mano (US500, 10/11/2021, short): costo X1 = 0,801 bps; costo X2 = 0,817 - 0,11 = 0,707 bps.\n7) Notizie vietate: importanza 3 e ORARIO_ESATTO nelle valute pertinenti (USA: USD; GER40/FRA40: EUR+USD; UK100: GBP+USD), piu' Dichiarazione FOMC, Verbali FOMC e Proiezioni FOMC. UTC = ora_server - 3 ore, poi convertito a NY+7. Sono incluse le aste di Treasury, i discorsi e le testimonianze con importanza 3: l'esclusione di \"aste e discorsi\" del §3 vale solo per l'elenco degli eventi S1, non per le notizie vietate.\n   - Le notizie vietate si applicano SOLO all'uscita X2: E = prima notizia vietata strettamente dopo l'ingresso e strettamente prima della pre-apertura; uscita = E-3 minuti, purche' cada dopo l'ingresso (nessun caso contrario).\n   - Nessuna esclusione di ingresso per notizie e nessuna correzione di X1: il §4 non le prevede.\n8) Statistiche: t CR1 raggruppato per data (con una riga per giorno coincide con il t di Student su una media), G-1 gradi di liberta', p unilaterale; n < 30 porterebbe p = 1, ma non capita mai. Europa: chiave = data locale dell'asta (la stessa data di New York). meta1 = media del netto z dei giorni prima del 01/01/2020; meta2 = dal 01/01/2020 in poi.\n\nANOMALIE E AVVERTENZE:\na) X2 negli USA: il 57% delle uscite (2480 su 4312 con c=0) e' anticipata a E-3, soprattutto alle 08:27 NY (dati delle 08:30, sussidi del giovedi' in testa) e alle 08:12 NY (ADP). Solo 6 uscite cadono nello stesso giorno server dell'ingresso.\nb) X2 in Europa: 537 uscite anticipate su 1964. 451 cadono nello stesso pomeriggio dell'ingresso perche' una notizia USD cade dopo l'ingresso delle 11:36 NY (aste del Treasury a 10 e 30 anni alle 13:00 NY, FOMC alle 14:00, discorsi di Powell e Lagarde). Questi trade non sono notturni e non pagano swap. 36 trade durano meno di 30 minuti, uno solo 1 minuto (GER40 14/02/2022, notizia alle 11:40 NY). E' l'applicazione letterale della regola E-3; il protocollo non fissa una durata minima per S2.\nc) Prezzi mancanti: tutte le quote annue sono sotto il 10%. La massima e' 8,1% nel 2017 e 6,5% nel 2018 per USA X1, dovuta quasi tutta a US2000 Pep alle 16:45 NY (barre rade). Gli altri test sono sotto il 3%.\nd) Controlli a mano sulle righe grezze: US500 10/11/2021 (EST, A = 23:00 server; P_pre = 4647,1, P_pre15 = 4641,1, ingresso 4646,5 alle 23:01, X1 4649,1 alle 23:45, X2 4663,0 alle 16:25 dell'11/11) e GER40 14/02/2022: tutto coincide. Il picco di tick volume alle 16:30 server su US500 e alle 10:00 server su GER40/UK100 conferma NY+7.\ne) Lo script e' deterministico; tempo di esecuzione circa 40 secondi con python3 -I."
+    }
+  ],
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Replica"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "replica:S1",
+      "phaseIndex": 1,
+      "phaseTitle": "Replica",
+      "agentId": "a2f781cd02d42a2f0",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1792514718478,
+      "queuedAt": 1792514718429,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "/tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4…",
+      "promptPreview": "Sei un analista quantitativo indipendente. Devi REPLICARE DA ZERO, scrivendo il tuo codice Python, una parte di un protocollo pre-registrato. Il tuo lavoro serve da controllo incrociato: un altro analista ha implementato lo stesso protocollo e confronteremo i numeri evento per evento.\n\nREGOLE DI ISOLAMENTO (vincolanti):\n- Leggi SOLO: /home/user/Strategy-20-10-UK100/lavoro/s1_s2/PROTOCOLLO_S1_S2.md…",
+      "promptFramed": true,
+      "lastProgressAt": 1792515301096,
+      "tokens": 122497,
+      "toolCalls": 18,
+      "durationMs": 582616,
+      "resultPreview": "{\"test\":[{\"test_id\":\"S1|c=0.10|H30\",\"n\":1414,\"lordo_z\":-0.008603200408850745,\"netto_base_z\":-0.028834490512144643,\"t\":-4.501501410048871,\"p\":0.9999962616036927,\"netto_stress_z\":-0.046648427963684895,\"netto_base_bps\":-1.6673142346876022,\"meta1\":0.9999962616036927,\"meta2\":1},{\"test_id\":\"S1|c=0.10|H60\",\"n\":1414,\"lordo_z\":-0.004278383894828946,\"netto_base_z\":-0.024709675521373625,\"t\":-2.84243036180314…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "replica:S2",
+      "phaseIndex": 1,
+      "phaseTitle": "Replica",
+      "agentId": "a60a3999edad6f027",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1792514718479,
+      "queuedAt": 1792514718429,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "/tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4…",
+      "promptPreview": "Sei un analista quantitativo indipendente. Devi REPLICARE DA ZERO, scrivendo il tuo codice Python, una parte di un protocollo pre-registrato. Il tuo lavoro serve da controllo incrociato: un altro analista ha implementato lo stesso protocollo e confronteremo i numeri evento per evento.\n\nREGOLE DI ISOLAMENTO (vincolanti):\n- Leggi SOLO: /home/user/Strategy-20-10-UK100/lavoro/s1_s2/PROTOCOLLO_S1_S2.md…",
+      "promptFramed": true,
+      "lastProgressAt": 1792515165700,
+      "tokens": 126252,
+      "toolCalls": 18,
+      "durationMs": 446258,
+      "resultPreview": "{\"test\":[{\"test_id\":\"S2|USA|c=0.00|X1\",\"n\":1615,\"lordo_z\":-0.006007084727036228,\"netto_base_z\":-0.025354252005510867,\"t\":-7.606243391856951,\"p\":0.9999999999999761,\"netto_stress_z\":-0.041426169387693945,\"netto_base_bps\":-3.018125311266985,\"meta1\":-0.03490309194398259,\"meta2\":-0.019450810881225238},{\"test_id\":\"S2|USA|c=0.00|X2\",\"n\":1272,\"lordo_z\":0.005278933811155253,\"netto_base_z\":-0.02561754117421…"
+    }
+  ],
+  "totalTokens": 248749,
+  "totalToolCalls": 36
+}
