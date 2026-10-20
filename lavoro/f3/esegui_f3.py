@@ -12,6 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import motore_f3 as M
 
 ANNI = range(2016, 2027)
+SEMIFESTIVI = True   # addendum 20/10/2026: sessione cash troncata nei giorni di chiusura anticipata
 NREP = 1000
 
 CELLE = {  # cella: (simbolo, tipo barre, regola, m (stop in ATR), uscita, k_atr R2)
@@ -37,7 +38,8 @@ def prepara(simbolo, feed_key, dati):
     fest_srv = fest_loc if cfg["cal"] == "ENG" else set()     # FTMO chiude UK100 nei bank holiday (F0)
     feed = M.Feed(os.path.join(dati, nome + ".csv"), inizio, fest_srv)
     tab = M.tabella_spread(cfg["spread_da"])
-    bs = M.indicatori(M.barre_sessione(feed, cfg["tz"], cfg["apre"], cfg["chiude"], fest_loc))
+    ant = M.chiusure_anticipate(cfg["cal"], ANNI, fest_loc) if SEMIFESTIVI else None
+    bs = M.indicatori(M.barre_sessione(feed, cfg["tz"], cfg["apre"], cfg["chiude"], fest_loc, ant))
     bc = M.indicatori(M.barre_cfd(feed, fest_srv)) if simbolo == "UK100" else None
     return feed, tab, bs, bc
 
@@ -116,7 +118,7 @@ def main(dati, out, fase):
                     # P2: stessa R1 negli altri giorni (martedì-venerdì), solo barre di sessione
                     for c in celle_s:
                         _, tipo, reg, m, usc, k = CELLE[c]
-                        if reg == "R1" and tipo == "sess" and usc == "24h":
+                        if reg == "R1" and tipo == "sess":
                             lst = M.segnali_R1(bs, esiti(tipo, m, usc, "base"), (1, 2, 3, 4), 40.0, True)
                             P2[(c, fk)] = trades_df(lst, bs, c + "_P2", fk, "base")
             del cache
@@ -127,4 +129,7 @@ def main(dati, out, fase):
     print("trade totali:", len(T))
 
 if __name__ == "__main__":
-    main(*sys.argv[1:4])
+    # opzioni per riprodurre le singole correzioni: --gap-vecchio, --senza-semifestivi
+    if "--gap-vecchio" in sys.argv: M.GAP_PROTOCOLLO = False
+    if "--senza-semifestivi" in sys.argv: SEMIFESTIVI = False
+    main(*[a for a in sys.argv[1:] if not a.startswith("--")][:3])

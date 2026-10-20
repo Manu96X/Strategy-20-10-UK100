@@ -62,12 +62,17 @@ def main(ris, fase):
                     n_ok=b.n >= b.n_req, concordanza=conc.loc[c].media > 0 if c in conc.index else False,
                     anni_ok=b.anni_pos >= 0.6, costo_ok=b.costo_R <= 0.125)
         verde = all(cond.values())
+        # L1 (lettura della prima esecuzione): una sola deroga alla volta
         altri = {k: v for k, v in cond.items() if k not in ("t_ok", "n_ok")}
         giallo_a = all(altri.values()) and (1.0 <= b.t < tsoglia)
         altri_b = {k: v for k, v in cond.items() if k != "placebo_bh"}
         giallo_b = all(altri_b.values()) and (b.placebo_p < 0.10)
         verd = "VERDE" if verde else ("GIALLO" if (giallo_a or giallo_b) else "ROSSO")
-        V.append(dict(cella=c, verdetto=verd, n=int(b.n), media=b.media, t=b.t, placebo_p=b.placebo_p,
+        # L2 (lettura cumulativa, addendum 20/10/2026 «dopo i numeri»): le due deroghe possono valere insieme
+        resto = {k: v for k, v in cond.items() if k not in ("t_ok", "n_ok", "placebo_bh")}
+        giallo_l2 = all(resto.values()) and (b.t >= 1.0) and (bool(rej[c]) or b.placebo_p < 0.10)
+        verd2 = "VERDE" if verde else ("GIALLO" if giallo_l2 else "ROSSO")
+        V.append(dict(cella=c, verdetto=verd, verdetto_L2=verd2, n=int(b.n), media=b.media, t=b.t, placebo_p=b.placebo_p,
                       media_stress=stress.loc[c].media, media_FTMO=conc.loc[c].media if c in conc.index else np.nan,
                       n_FTMO=int(conc.loc[c].n) if c in conc.index else 0, **cond))
     V = pd.DataFrame(V); V.to_csv(os.path.join(ris, f"VERDETTI_{fase}.csv"), sep=";", decimal=",", index=False)

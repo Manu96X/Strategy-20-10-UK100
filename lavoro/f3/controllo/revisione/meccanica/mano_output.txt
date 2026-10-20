@@ -1,0 +1,168 @@
+
+##### T1 A1 TEMPO 24h: cella A1 PEP base  data_loc 2017-07-24 k 0  d = 2.5 x ATR 23.348608 = 58.371521 (file 58.371521)
+  fine barra segnale (server) = 2017-07-24 11:00:00; primo M1 >= fine = ingresso 2017-07-24 11:00:00
+
+=== T1 A1 TEMPO 24h  [base]  riga d'ingresso: 2017.07.24 11:00:00 7412.5 7413.0 7410.0 7412.5 54 539999999999946 10
+  fill = open 7412.5 + spread 0.75x1.0 + mkt 0.0 = 7413.2500;  d = 58.371521;  SL = 7354.8785  TP = 7529.9930
+  scadenza regola = 2017-07-25 11:00:00   chiusura forzata = None  -> t_exit = 2017-07-25 11:00:00
+  nessun SL/TP prima di t_exit (low min 7357.5, high max 7428.0); riga d'uscita: 2017.07.25 11:00:00 7420.5 7424.5 7417.3 7418.7 93 929999999999907 10
+  uscita 2017-07-25 11:00:00 TEMPO; notti 1 (mercoledi' x3) -> swap 0.5;  R = (7420.5000 - 7413.2500 - 0.5) / 58.371521 = 0.115639;  costo_R = 0.021415
+  CONFRONTO  atteso: TEMPO 2017-07-25 11:00:00 R +0.115639 costo_R 0.021415  |  file: TEMPO 2017-07-25 11:00:00 R +0.115639 costo_R 0.021415  |dR| 0.00e+00
+
+##### T2 A1 SL: cella A1 PEP base  data_loc 2017-11-13 k 1  d = 2.5 x ATR 18.453316 = 46.133289 (file 46.133289)
+  fine barra segnale (server) = 2017-11-13 12:00:00; primo M1 >= fine = ingresso 2017-11-13 12:00:00
+
+=== T2 A1 SL  [base]  riga d'ingresso: 2017.11.13 12:00:00 7455.3 7455.6 7454.1 7455.1 29 0 10
+  fill = open 7455.3 + spread 0.75x1.0 + mkt 0.0 = 7456.0500;  d = 46.133289;  SL = 7409.9167  TP = 7548.3166
+  scadenza regola = 2017-11-14 12:00:00   chiusura forzata = None  -> t_exit = 2017-11-14 12:00:00
+  low min prima = 7410.1; riga SL: 2017.11.13 16:27:00 7410.1 7411.1 7407.7 7407.7 44 0 10  -> px = min(open 7410.1, SL-slip 7409.1167) = 7409.1167   [protocollo: min(open,SL)-slip = 7409.1167]
+  uscita 2017-11-13 16:27:00 SL; notti 0 (mercoledi' x3) -> swap 0.0;  R = (7409.1167 - 7456.0500 - 0.0) / 46.133289 = -1.017341;  costo_R = 0.033598
+  CONFRONTO  atteso: SL 2017-11-13 16:27:00 R -1.017341 costo_R 0.033598  |  file: SL 2017-11-13 16:27:00 R -1.017341 costo_R 0.033598  |dR| 0.00e+00
+
+##### T3 A1 TP: cella A1 PEP base  data_loc 2018-03-26 k 7  d = 2.5 x ATR 25.594408 = 63.986020 (file 63.986020)
+  fine barra segnale (server) = 2018-03-26 18:00:00; primo M1 >= fine = ingresso 2018-03-26 18:00:00
+
+=== T3 A1 TP  [base]  riga d'ingresso: 2018.03.26 18:00:00 6888.7 6891.5 6887.0 6890.7 108 0 10
+  fill = open 6888.7 + spread 0.85x1.0 + mkt 0.0 = 6889.5500;  d = 63.986020;  SL = 6825.5640  TP = 7017.5220
+  scadenza regola = 2018-03-27 18:00:00   chiusura forzata = None  -> t_exit = 2018-03-27 18:00:00
+  high max prima = 7017.1; riga TP: 2018.03.27 12:29:00 7015.1 7017.6 7015.1 7016.1 42 0 10  -> px = TP 7017.5220
+  uscita 2018-03-27 12:29:00 TP; notti 1 (mercoledi' x3) -> swap 0.5;  R = (7017.5220 - 6889.5500 - 0.5) / 63.986020 = 1.992186;  costo_R = 0.021098
+  CONFRONTO  atteso: TP 2018-03-27 12:29:00 R +1.992186 costo_R 0.021098  |  file: TP 2018-03-27 12:29:00 R +1.992186 costo_R 0.021098  |dR| 0.00e+00
+
+##### T4 A1 TEMPO stress: cella A1 PEP stress  data_loc 2017-07-24 k 0  d = 2.5 x ATR 23.348608 = 58.371521 (file 58.371521)
+
+=== T4 A1 TEMPO stress  [stress]  riga d'ingresso: 2017.07.24 11:00:00 7412.5 7413.0 7410.0 7412.5 54 539999999999946 10
+  fill = open 7412.5 + spread 0.75x1.5 + mkt 0.5 = 7414.1250;  d = 58.371521;  SL = 7355.7535  TP = 7530.8680
+  scadenza regola = 2017-07-25 11:00:00   chiusura forzata = None  -> t_exit = 2017-07-25 11:00:00
+  nessun SL/TP prima di t_exit (low min 7357.5, high max 7428.0); riga d'uscita: 2017.07.25 11:00:00 7420.5 7424.5 7417.3 7418.7 93 929999999999907 10
+  uscita 2017-07-25 11:00:00 TEMPO; notti 1 (mercoledi' x3) -> swap 2.0;  R = (7420.0000 - 7414.1250 - 2.0) / 58.371521 = 0.066385;  costo_R = 0.070668
+  CONFRONTO  atteso: TEMPO 2017-07-25 11:00:00 R +0.066385 costo_R 0.070668  |  file: TEMPO 2017-07-25 11:00:00 R +0.066385 costo_R 0.070668  |dR| 0.00e+00
+
+ultima quotazione ven 28/07/2017: 2017-07-28 23:58:00
+
+##### T5 A5 CHIUSURA venerdi': cella A5 PEP base  data_loc 2017-07-28 k 7  d = 2.0 x ATR 22.872537 = 45.745073 (file 45.745073)
+
+=== T5 A5 CHIUSURA venerdi'  [base]  riga d'ingresso: 2017.07.28 18:00:00 7361.6 7366.1 7361.6 7365.9 75 749999999999925 10
+  fill = open 7361.6 + spread 0.85x1.0 + mkt 0.0 = 7362.4500;  d = 45.745073;  SL = 7316.7049  TP = 7453.9401
+  scadenza regola = 2017-07-29 18:00:00   chiusura forzata = 2017-07-28 23:43:00  -> t_exit = 2017-07-28 23:43:00
+  nessun SL/TP prima di t_exit (low min 7351.6, high max 7382.1); riga d'uscita: 2017.07.28 23:44:00 7377.8 7378.8 7377.8 7378.8 3 29999999999997 50
+  uscita 2017-07-28 23:44:00 CHIUSURA; notti 0 (mercoledi' x3) -> swap 0.0;  R = (7377.8000 - 7362.4500 - 0.0) / 45.745073 = 0.335555;  costo_R = 0.018581
+  CONFRONTO  atteso: CHIUSURA 2017-07-28 23:44:00 R +0.335555 costo_R 0.018581  |  file: CHIUSURA 2017-07-28 23:44:00 R +0.335555 costo_R 0.018581  |dR| 0.00e+00
+
+##### T6 A5 mercoledi' swap x3: cella A5 PEP base  data_loc 2017-09-06 k 0  d = 2.0 x ATR 18.315619 = 36.631239 (file 36.631239)
+
+=== T6 A5 mercoledi' swap x3  [base]  riga d'ingresso: 2017.09.06 11:00:00 7349.0 7350.5 7348.0 7349.7 47 469999999999953 10
+  fill = open 7349.0 + spread 0.75x1.0 + mkt 0.0 = 7349.7500;  d = 36.631239;  SL = 7313.1188  TP = 7423.0125
+  scadenza regola = 2017-09-07 11:00:00   chiusura forzata = None  -> t_exit = 2017-09-07 11:00:00
+  nessun SL/TP prima di t_exit (low min 7320.4, high max 7381.9); riga d'uscita: 2017.09.07 11:00:00 7354.9 7355.5 7354.0 7354.4 31 309999999999969 10
+  uscita 2017-09-07 11:00:00 TEMPO; notti 3 (mercoledi' x3) -> swap 1.5;  R = (7354.9000 - 7349.7500 - 1.5) / 36.631239 = 0.099642;  costo_R = 0.061423
+  CONFRONTO  atteso: TEMPO 2017-09-07 11:00:00 R +0.099642 costo_R 0.061423  |  file: TEMPO 2017-09-07 11:00:00 R +0.099642 costo_R 0.061423  |dR| 0.00e+00
+
+##### T7 A10 SL in gap stress: cella A10 PEP stress  data_loc 2018-12-05 k 18  d = 2.0 x ATR 21.274950 = 42.549901 (file 42.549901)
+  fine barra segnale (server) = 2018-12-05 19:00:00; primo M1 >= fine = ingresso 2018-12-05 19:00:00
+
+=== T7 A10 SL in gap stress  [stress]  riga d'ingresso: 2018.12.05 19:00:00 6923.3 6923.3 6921.6 6921.6 9 0 10
+  fill = open 6923.3 + spread 1.65x1.5 + mkt 0.5 = 6926.2750;  d = 42.549901;  SL = 6883.7251  TP = 7011.3748
+  scadenza regola = 2018-12-06 19:00:00   chiusura forzata = None  -> t_exit = 2018-12-06 19:00:00
+  low min prima = 6913.7; riga SL: 2018.12.06 01:09:00 6837.4 6839.9 6836.9 6839.9 36 0 65  -> px = min(open 6837.4, SL-slip 6881.7251) = 6837.4000   [protocollo: min(open,SL)-slip = 6835.4000]
+  uscita 2018-12-06 01:09:00 SL; notti 3 (mercoledi' x3) -> swap 6.0;  R = (6837.4000 - 6926.2750 - 6.0) / 42.549901 = -2.229735;  costo_R = 0.257932
+  CONFRONTO  atteso: SL 2018-12-06 01:09:00 R -2.229735 costo_R 0.257932  |  file: SL 2018-12-06 01:09:00 R -2.229735 costo_R 0.257932  |dR| 0.00e+00
+
+##### T8 A2 TEMPO 24 barre: cella A2 PEP base  data_loc 2017-07-24 k 0  d = 2.5 x ATR 23.348608 = 58.371521 (file 58.371521)
+
+=== T8 A2 TEMPO 24 barre  [base]  riga d'ingresso: 2017.07.24 11:00:00 7412.5 7413.0 7410.0 7412.5 54 539999999999946 10
+  fill = open 7412.5 + spread 0.75x1.0 + mkt 0.0 = 7413.2500;  d = 58.371521;  SL = 7354.8785  TP = 7529.9930
+  scadenza regola = 2017-07-26 17:00:00   chiusura forzata = None  -> t_exit = 2017-07-26 17:00:00
+  nessun SL/TP prima di t_exit (low min 7357.5, high max 7489.8); riga d'uscita: 2017.07.26 17:00:00 7465.8 7466.8 7463.8 7465.3 38 379999999999962 10
+  uscita 2017-07-26 17:00:00 TEMPO; notti 2 (mercoledi' x3) -> swap 1.0;  R = (7465.8000 - 7413.2500 - 1.0) / 58.371521 = 0.883136;  costo_R = 0.029980
+  CONFRONTO  atteso: TEMPO 2017-07-26 17:00:00 R +0.883136 costo_R 0.029980  |  file: TEMPO 2017-07-26 17:00:00 R +0.883136 costo_R 0.029980  |dR| 0.00e+00
+
+ultima quotazione lun 18/09/2017: 2017-09-18 23:58:00
+
+##### T9 A3 sera 23:40: cella A3 PEP base  data_loc 2017-09-18 k 0  d = 2.5 x ATR 23.272663 = 58.181658 (file 58.181658)
+
+=== T9 A3 sera 23:40  [base]  riga d'ingresso: 2017.09.18 11:00:00 7236.8 7236.8 7235.7 7235.7 67 669999999999933 10
+  fill = open 7236.8 + spread 0.75x1.0 + mkt 0.0 = 7237.5500;  d = 58.181658;  SL = 7179.3683  TP = 7353.9133
+  scadenza regola = 2017-09-18 23:40:00   chiusura forzata = None  -> t_exit = 2017-09-18 23:40:00
+  nessun SL/TP prima di t_exit (low min 7227.8, high max 7262.8); riga d'uscita: 2017.09.18 23:40:00 7261.8 7261.8 7261.5 7261.8 3 29999999999997 50
+  uscita 2017-09-18 23:40:00 TEMPO; notti 0 (mercoledi' x3) -> swap 0.0;  R = (7261.8000 - 7237.5500 - 0.0) / 58.181658 = 0.416798;  costo_R = 0.012891
+  CONFRONTO  atteso: TEMPO 2017-09-18 23:40:00 R +0.416798 costo_R 0.012891  |  file: TEMPO 2017-09-18 23:40:00 R +0.416798 costo_R 0.012891  |dR| 0.00e+00
+
+##### T10 A9 CFD notte stress: cella A9 PEP stress  data_loc 2017-07-17 k 4  d = 2.5 x ATR 10.967865 = 27.419663 (file 27.419663)
+  fine barra segnale (server) = 2017-07-17 05:00:00; primo M1 >= fine = ingresso 2017-07-17 05:00:00
+
+=== T10 A9 CFD notte stress  [stress]  riga d'ingresso: 2017.07.17 05:00:00 7384.9 7386.0 7384.9 7385.5 8 79999999999992 33
+  fill = open 7384.9 + spread 3.75x1.5 + mkt 0.5 = 7391.0250;  d = 27.419663;  SL = 7363.6053  TP = 7445.8643
+  scadenza regola = 2017-07-18 05:00:00   chiusura forzata = None  -> t_exit = 2017-07-18 05:00:00
+  nessun SL/TP prima di t_exit (low min 7384.8, high max 7430.0); riga d'uscita: 2017.07.18 05:00:00 7388.8 7389.3 7388.8 7389.3 4 39999999999996 10
+  uscita 2017-07-18 05:00:00 TEMPO; notti 1 (mercoledi' x3) -> swap 2.0;  R = (7388.3000 - 7391.0250 - 2.0) / 27.419663 = -0.172322;  costo_R = 0.314555
+  CONFRONTO  atteso: TEMPO 2017-07-18 05:00:00 R -0.172322 costo_R 0.314555  |  file: TEMPO 2017-07-18 05:00:00 R -0.172322 costo_R 0.314555  |dR| 0.00e+00
+
+ultima quotazione ven 11/08/2017: 2017-08-11 23:58:00
+
+##### T11 A7 CHIUSURA venerdi' (24 barre): cella A7 PEP base  data_loc 2017-08-11 k 0  d = 2.0 x ATR 24.800578 = 49.601156 (file 49.601156)
+
+=== T11 A7 CHIUSURA venerdi' (24 barre)  [base]  riga d'ingresso: 2017.08.11 11:00:00 7322.4 7325.5 7322.4 7325.4 51 509999999999949 10
+  fill = open 7322.4 + spread 0.75x1.0 + mkt 0.0 = 7323.1500;  d = 49.601156;  SL = 7273.5488  TP = 7422.3523
+  scadenza regola = 2017-08-15 17:00:00   chiusura forzata = 2017-08-11 23:43:00  -> t_exit = 2017-08-11 23:43:00
+  nessun SL/TP prima di t_exit (low min 7292.3, high max 7340.8); riga d'uscita: 2017.08.11 23:43:00 7296.8 7297.0 7296.8 7296.8 3 29999999999997 50
+  uscita 2017-08-11 23:43:00 CHIUSURA; notti 0 (mercoledi' x3) -> swap 0.0;  R = (7296.8000 - 7323.1500 - 0.0) / 49.601156 = -0.531238;  costo_R = 0.015121
+  CONFRONTO  atteso: CHIUSURA 2017-08-11 23:43:00 R -0.531238 costo_R 0.015121  |  file: CHIUSURA 2017-08-11 23:43:00 R -0.531238 costo_R 0.015121  |dR| 0.00e+00
+
+##### T12 B1 GER40 FTMO: cella B1 FTMO base  data_loc 2022-02-14 k 3  d = 2.5 x ATR 104.941713 = 262.354284 (file 262.354284)
+  fine barra segnale (server) = 2022-02-14 14:00:00; primo M1 >= fine = ingresso 2022-02-14 14:00:00
+
+=== T12 B1 GER40 FTMO  [base]  riga d'ingresso: 2022.02.14 14:00:00 14944.55 14948.55 14928.55 14930.35 41 0 50
+  fill = open 14944.55 + spread 1.13x1.0 + mkt 0.0 = 14945.6800;  d = 262.354284;  SL = 14683.3257  TP = 15470.3886
+  scadenza regola = 2022-02-15 14:00:00   chiusura forzata = None  -> t_exit = 2022-02-15 14:00:00
+  nessun SL/TP prima di t_exit (low min 14907.35, high max 15399.75); riga d'uscita: 2022.02.15 14:00:00 15390.75 15396.75 15356.55 15382.55 58 0 50
+  uscita 2022-02-15 14:00:00 TEMPO; notti 1 (mercoledi' x3) -> swap 0.5;  R = (15390.7500 - 14945.6800 - 0.5) / 262.354284 = 1.694541;  costo_R = 0.006213
+  CONFRONTO  atteso: TEMPO 2022-02-15 14:00:00 R +1.694541 costo_R 0.006213  |  file: TEMPO 2022-02-15 14:00:00 R +1.694541 costo_R 0.006213  |dR| 0.00e+00
+
+##### T13 B2 US500 PEP: cella B2 PEP base  data_loc 2020-09-21 k 0  d = 2.5 x ATR 25.805401 = 64.513503 (file 64.513503)
+  fine barra segnale (server) = 2020-09-21 17:30:00; primo M1 >= fine = ingresso 2020-09-21 17:30:00
+
+=== T13 B2 US500 PEP  [base]  riga d'ingresso: 2020.09.21 17:30:00 3238.2 3240.2 3236.2 3236.7 128 0 4
+  fill = open 3238.2 + spread 0.56x1.0 + mkt 0.0 = 3238.7600;  d = 64.513503;  SL = 3174.2465  TP = 3367.7870
+  scadenza regola = 2020-09-22 17:30:00   chiusura forzata = None  -> t_exit = 2020-09-22 17:30:00
+  nessun SL/TP prima di t_exit (low min 3228.4, high max 3302.6); riga d'uscita: 2020.09.22 17:30:00 3299.6 3301.1 3298.9 3299.9 61 0 4
+  uscita 2020-09-22 17:30:00 TEMPO; notti 1 (mercoledi' x3) -> swap 0.5;  R = (3299.6000 - 3238.7600 - 0.5) / 64.513503 = 0.935308;  costo_R = 0.016431
+  CONFRONTO  atteso: TEMPO 2020-09-22 17:30:00 R +0.935308 costo_R 0.016431  |  file: TEMPO 2020-09-22 17:30:00 R +0.935308 costo_R 0.016431  |dR| 0.00e+00
+
+##### T14 B3 US100 PEP: cella B3 PEP base  data_loc 2017-08-21 k 0  d = 2.5 x ATR 25.184975 = 62.962437 (file 62.962437)
+  fine barra segnale (server) = 2017-08-21 17:30:00; primo M1 >= fine = ingresso 2017-08-21 17:30:00
+
+=== T14 B3 US100 PEP  [base]  riga d'ingresso: 2017.08.21 17:30:00 5760.9 5762.6 5759.1 5762.6 198 1979999999999802 10
+  fill = open 5760.9 + spread 1.45x1.0 + mkt 0.0 = 5762.3500;  d = 62.962437;  SL = 5699.3876  TP = 5888.2749
+  scadenza regola = 2017-08-22 17:30:00   chiusura forzata = None  -> t_exit = 2017-08-22 17:30:00
+  nessun SL/TP prima di t_exit (low min 5757.2, high max 5853.2); riga d'uscita: 2017.08.22 17:30:00 5850.9 5853.2 5850.9 5852.3 93 929999999999907 10
+  uscita 2017-08-22 17:30:00 TEMPO; notti 1 (mercoledi' x3) -> swap 0.5;  R = (5850.9000 - 5762.3500 - 0.5) / 62.962437 = 1.398453;  costo_R = 0.030971
+  CONFRONTO  atteso: TEMPO 2017-08-22 17:30:00 R +1.398453 costo_R 0.030971  |  file: TEMPO 2017-08-22 17:30:00 R +1.398453 costo_R 0.030971  |dR| 0.00e+00
+
+##### T15 A1 SL dopo buco dati: cella A1 PEP base  data_loc 2019-12-30 k 8  d = 2.5 x ATR 17.988307 = 44.970768 (file 44.970768)
+  fine barra segnale (server) = 2019-12-30 18:30:00; primo M1 >= fine = ingresso 2019-12-30 18:30:00
+
+=== T15 A1 SL dopo buco dati  [base]  riga d'ingresso: 2019.12.30 18:30:00 7592.3 7593.0 7586.3 7587.3 143 0 20
+  fill = open 7592.3 + spread 0.85x1.0 + mkt 0.0 = 7593.1500;  d = 44.970768;  SL = 7548.1792  TP = 7683.0915
+  scadenza regola = 2019-12-31 18:30:00   chiusura forzata = None  -> t_exit = 2019-12-31 18:30:00
+  low min prima = 7567.5; riga SL: 2019.12.31 14:50:00 7541.6 7541.6 7539.0 7539.4 4 0 10  -> px = min(open 7541.6, SL-slip 7547.3792) = 7541.6000   [protocollo: min(open,SL)-slip = 7540.8000]
+  uscita 2019-12-31 14:50:00 SL; notti 1 (mercoledi' x3) -> swap 0.5;  R = (7541.6000 - 7593.1500 - 0.5) / 44.970768 = -1.157419;  costo_R = 0.047809
+  CONFRONTO  atteso: SL 2019-12-31 14:50:00 R -1.157419 costo_R 0.047809  |  file: SL 2019-12-31 14:50:00 R -1.157419 costo_R 0.047809  |dR| 0.00e+00
+
+RIEPILOGO
+('T1 A1 TEMPO 24h', 'A1', 'PEP', 'base', '2017-07-24 11:00:00', 'TEMPO', 'TEMPO', 0.115639, 0.115639, 0.0, 0.0)
+('T2 A1 SL', 'A1', 'PEP', 'base', '2017-11-13 12:00:00', 'SL', 'SL', -1.017341, -1.017341, 0.0, 0.0)
+('T3 A1 TP', 'A1', 'PEP', 'base', '2018-03-26 18:00:00', 'TP', 'TP', 1.992186, 1.992186, 0.0, 0.0)
+('T4 A1 TEMPO stress', 'A1', 'PEP', 'stress', '2017-07-24 11:00:00', 'TEMPO', 'TEMPO', 0.066385, 0.066385, 0.0, 0.0)
+("T5 A5 CHIUSURA venerdi'", 'A5', 'PEP', 'base', '2017-07-28 18:00:00', 'CHIUSURA', 'CHIUSURA', 0.335555, 0.335555, 0.0, 0.0)
+("T6 A5 mercoledi' swap x3", 'A5', 'PEP', 'base', '2017-09-06 11:00:00', 'TEMPO', 'TEMPO', 0.099642, 0.099642, 0.0, 0.0)
+('T7 A10 SL in gap stress', 'A10', 'PEP', 'stress', '2018-12-05 19:00:00', 'SL', 'SL', -2.229735, -2.229735, 0.0, 0.0)
+('T8 A2 TEMPO 24 barre', 'A2', 'PEP', 'base', '2017-07-24 11:00:00', 'TEMPO', 'TEMPO', 0.883136, 0.883136, 0.0, 0.0)
+('T9 A3 sera 23:40', 'A3', 'PEP', 'base', '2017-09-18 11:00:00', 'TEMPO', 'TEMPO', 0.416798, 0.416798, 0.0, 0.0)
+('T10 A9 CFD notte stress', 'A9', 'PEP', 'stress', '2017-07-17 05:00:00', 'TEMPO', 'TEMPO', -0.172322, -0.172322, 0.0, 0.0)
+("T11 A7 CHIUSURA venerdi' (24 barre)", 'A7', 'PEP', 'base', '2017-08-11 11:00:00', 'CHIUSURA', 'CHIUSURA', -0.531238, -0.531238, 0.0, 0.0)
+('T12 B1 GER40 FTMO', 'B1', 'FTMO', 'base', '2022-02-14 14:00:00', 'TEMPO', 'TEMPO', 1.694541, 1.694541, 0.0, 0.0)
+('T13 B2 US500 PEP', 'B2', 'PEP', 'base', '2020-09-21 17:30:00', 'TEMPO', 'TEMPO', 0.935308, 0.935308, 0.0, 0.0)
+('T14 B3 US100 PEP', 'B3', 'PEP', 'base', '2017-08-21 17:30:00', 'TEMPO', 'TEMPO', 1.398453, 1.398453, 0.0, 0.0)
+('T15 A1 SL dopo buco dati', 'A1', 'PEP', 'base', '2019-12-30 18:30:00', 'SL', 'SL', -1.157419, -1.157419, 0.0, 0.0)
+max |dR| = 0.0  max |dcosto_R| = 0.0

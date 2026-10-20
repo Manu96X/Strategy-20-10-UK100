@@ -1,0 +1,116 @@
+PEP barre sess del 24 e 31/12: 56  di cui k>=5: 20  giorni con k>=5: ['2019-12-24', '2019-12-31', '2020-12-24', '2020-12-31', '2021-12-31']
+PEP barre: 14892 -> 14871
+  PEP base   A1 n 82->82 media +0.10536 -> +0.10614 (+0.00079) t 1.026 identici=False
+       solo codice : 2019-01-14 13:00:00 R +0.2507
+       solo codice : 2019-12-30 18:30:00 R -1.1574
+       solo codice : 2020-01-06 11:00:00 R +0.6996
+       solo codice : 2021-01-18 14:00:00 R +0.3000
+       solo codice : 2022-01-10 18:00:00 R +0.8868
+       solo variante: 2019-01-14 13:00:00 R +0.2507
+       solo variante: 2019-12-30 18:30:00 R -1.1064
+       solo variante: 2020-01-06 11:00:00 R +0.7132
+       solo variante: 2021-01-18 14:00:00 R +0.3000
+       solo variante: 2022-01-10 18:00:00 R +0.8866
+  PEP base   A2 n 82->82 media +0.25917 -> +0.25989 (+0.00072) t 1.899 identici=False
+       solo codice : 2019-01-14 13:00:00 R +0.0358
+       solo codice : 2019-12-30 18:30:00 R -1.1574
+       solo codice : 2020-01-06 11:00:00 R +0.4067
+       solo codice : 2021-01-18 14:00:00 R +0.4122
+       solo codice : 2022-01-10 18:00:00 R +1.9830
+       solo variante: 2019-01-14 13:00:00 R +0.0358
+       solo variante: 2019-12-30 18:30:00 R -1.1064
+       solo variante: 2020-01-06 11:00:00 R +0.4146
+       solo variante: 2021-01-18 14:00:00 R +0.4122
+       solo variante: 2022-01-10 18:00:00 R +1.9830
+  PEP base   A3 n 82->82 media +0.03519 -> +0.03561 (+0.00042) t 0.448 identici=False
+       solo codice : 2019-01-14 13:00:00 R +0.1177
+       solo codice : 2019-12-30 18:30:00 R -0.4681
+       solo codice : 2020-01-06 11:00:00 R +0.7338
+       solo codice : 2020-01-27 11:00:00 R -0.6864
+       solo codice : 2021-01-18 14:00:00 R +0.3277
+       solo codice : 2022-01-10 18:00:00 R +0.7714
+       solo variante: 2019-01-14 13:00:00 R +0.1177
+       solo variante: 2019-12-30 18:30:00 R -0.4474
+       solo variante: 2020-01-06 11:00:00 R +0.7481
+       solo variante: 2020-01-27 11:00:00 R -0.6864
+       solo variante: 2021-01-18 14:00:00 R +0.3276
+       solo variante: 2022-01-10 18:00:00 R +0.7712
+  PEP base   A4 n 440->441 media -0.01865 -> -0.01617 (+0.00248) t -0.325 identici=False
+       solo codice : 2018-12-27 14:00:00 R -1.0118
+       solo codice : 2018-12-27 18:00:00 R +1.9928
+       solo codice : 2019-01-23 11:00:00 R -0.5201
+       solo codice : 2019-12-31 15:00:00 R +0.4746
+       solo codice : 2020-01-21 11:00:00 R +1.0269
+       solo codice : 2020-12-31 11:00:00 R +0.5274
+       solo codice : 2021-01-22 12:00:00 R +0.3764
+       solo codice : 2021-01-25 14:00:00 R +0.8268
+       solo variante: 2018-12-27 14:00:00 R -1.0119
+       solo variante: 2018-12-27 18:00:00 R +1.9927
+       solo variante: 2019-01-23 11:00:00 R -0.5201
+       solo variante: 2020-01-03 11:00:00 R +0.6718
+       solo variante: 2020-01-06 11:00:00 R +0.8915
+       solo variante: 2020-01-21 11:00:00 R +1.0269
+       solo variante: 2020-12-31 11:00:00 R +0.5152
+       solo variante: 2021-01-22 12:00:00 R +0.3764
+       solo variante: 2021-01-25 14:00:00 R +0.8268
+  PEP base   A5 n 358->359 media -0.03815 -> -0.03382 (+0.00434) t -0.611 identici=False
+       solo codice : 2018-12-27 15:00:00 R -1.0122
+       solo codice : 2018-12-27 18:00:00 R +1.9928
+       solo codice : 2019-12-31 15:00:00 R +0.4746
+       solo codice : 2020-01-21 11:00:00 R +1.0269
+       solo codice : 2021-01-25 15:00:00 R +1.5205
+       solo codice : 2022-01-21 15:00:00 R -1.0164
+       solo variante: 2018-12-27 15:00:00 R -1.0124
+       solo variante: 2018-12-27 18:00:00 R +1.9927
+       solo variante: 2020-01-03 13:00:00 R +1.1019
+       solo variante: 2020-01-06 11:00:00 R +0.8915
+       solo variante: 2020-01-21 11:00:00 R +1.0269
+       solo variante: 2021-01-25 15:00:00 R +1.5205
+       solo variante: 2022-01-21 15:00:00 R -1.0164
+  PEP base   A6 n 237->236 media -0.00636 -> -0.00889 (-0.00253) t -0.128 identici=False
+       solo codice : 2018-12-27 18:00:00 R +1.9928
+       solo codice : 2019-01-24 16:00:00 R +0.6148
+       solo codice : 2019-12-31 16:00:00 R +0.5910
+       solo variante: 2018-12-27 18:00:00 R +1.9927
+       solo variante: 2019-01-24 16:00:00 R +0.6148
+  PEP base   A7 n 318->319 media -0.05693 -> -0.05803 (-0.00110) t -0.886 identici=False
+       solo codice : 2018-12-27 15:00:00 R -1.0122
+       solo codice : 2018-12-27 18:00:00 R +1.9928
+       solo codice : 2019-12-31 15:00:00 R +0.4746
+       solo codice : 2020-01-21 11:00:00 R -1.0656
+       solo codice : 2022-01-21 15:00:00 R -1.0164
+       solo variante: 2018-12-27 15:00:00 R -1.0124
+       solo variante: 2018-12-27 18:00:00 R +1.9927
+       solo variante: 2020-01-03 13:00:00 R +1.1019
+       solo variante: 2020-01-06 11:00:00 R -1.0341
+       solo variante: 2020-01-21 11:00:00 R -1.0656
+       solo variante: 2022-01-21 15:00:00 R -1.0164
+  PEP stress A1 n 82->82 media +0.06655 -> +0.06735 (+0.00080) t 0.652 identici=False
+  PEP stress A2 n 82->82 media +0.20965 -> +0.21039 (+0.00073) t 1.546 identici=False
+  PEP stress A3 n 82->82 media +0.01458 -> +0.01502 (+0.00044) t 0.189 identici=False
+  PEP stress A4 n 443->444 media -0.08047 -> -0.07799 (+0.00248) t -1.572 identici=False
+  PEP stress A5 n 359->360 media -0.08908 -> -0.08476 (+0.00432) t -1.534 identici=False
+  PEP stress A6 n 238->237 media -0.05584 -> -0.05842 (-0.00258) t -0.837 identici=False
+  PEP stress A7 n 322->323 media -0.12151 -> -0.12264 (-0.00113) t -1.866 identici=False
+FTMO barre sess del 24 e 31/12: 10  di cui k>=5: 0  giorni con k>=5: []
+FTMO barre: 5178 -> 5178
+  FTMO base   A1 n 26->26 media +0.11836 -> +0.11841 (+0.00005) t 0.605 identici=False
+       solo codice : 2022-01-10 18:00:00 R +0.9073
+       solo variante: 2022-01-10 18:00:00 R +0.9085
+  FTMO base   A2 n 26->26 media +0.12474 -> +0.12474 (-0.00000) t 0.500 identici=False
+       solo codice : 2022-01-10 18:00:00 R +1.9832
+       solo variante: 2022-01-10 18:00:00 R +1.9831
+  FTMO base   A3 n 26->26 media +0.08775 -> +0.08779 (+0.00004) t 0.611 identici=False
+       solo codice : 2022-01-10 18:00:00 R +0.6920
+       solo variante: 2022-01-10 18:00:00 R +0.6929
+  FTMO base   A4 n 148->148 media -0.07100 -> -0.07100 (-0.00000) t -0.843 identici=True
+  FTMO base   A5 n 121->121 media -0.07369 -> -0.07369 (-0.00000) t -0.788 identici=True
+  FTMO base   A6 n 78->78 media -0.09331 -> -0.09331 (-0.00000) t -0.768 identici=True
+  FTMO base   A7 n 107->107 media -0.10569 -> -0.10569 (-0.00000) t -0.918 identici=True
+  FTMO stress A1 n 26->26 media +0.08507 -> +0.08512 (+0.00004) t 0.436 identici=False
+  FTMO stress A2 n 26->26 media +0.08060 -> +0.08060 (-0.00000) t 0.324 identici=False
+  FTMO stress A3 n 26->26 media +0.06860 -> +0.06863 (+0.00003) t 0.479 identici=False
+  FTMO stress A4 n 150->150 media -0.11809 -> -0.11809 (-0.00000) t -1.394 identici=True
+  FTMO stress A5 n 122->122 media -0.11244 -> -0.11244 (-0.00000) t -1.193 identici=True
+  FTMO stress A6 n 79->79 media -0.12447 -> -0.12447 (-0.00000) t -1.011 identici=True
+  FTMO stress A7 n 108->108 media -0.16696 -> -0.16696 (-0.00000) t -1.451 identici=True

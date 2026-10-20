@@ -1,0 +1,32 @@
+UK100 PEP base   A1   n 82->81  media +0.10536 -> +0.10414  diff -0.00122
+     2019-12-30 18:30:00  R codice -1.1574 (SL)  R variante -0.4748 (CHIUSURA)
+     2022-01-10 18:00:00  R codice +0.8868 (TEMPO)  R variante +nan (-)
+UK100 PEP base   A2   n 82->81  media +0.25917 -> +0.24632  diff -0.01285
+     2019-12-30 18:30:00  R codice -1.1574 (SL)  R variante -0.4748 (CHIUSURA)
+     2022-01-10 18:00:00  R codice +1.9830 (TP)  R variante +nan (-)
+UK100 PEP base   A3   n 82->81  media +0.03519 -> +0.02610  diff -0.00909
+     2022-01-10 18:00:00  R codice +0.7714 (TEMPO)  R variante +nan (-)
+UK100 PEP base   A9   n 161->160  media -0.00382 -> -0.00406  diff -0.00024
+     2022-01-10 18:00:00  R codice +1.0529 (TEMPO)  R variante +nan (-)
+     2023-09-04 18:00:00  R codice -1.0372 (SL)  R variante -0.0186 (CHIUSURA)
+UK100 PEP base   A10  n 689->689  media -0.05216 -> -0.05076  diff +0.00140
+     2019-12-30 19:00:00  R codice -1.5361 (SL)  R variante -0.5747 (CHIUSURA)
+UK100 PEP stress A1   n 82->81  media +0.06655 -> +0.06574  diff -0.00081
+UK100 PEP stress A2   n 82->81  media +0.20965 -> +0.19709  diff -0.01256
+UK100 PEP stress A3   n 82->81  media +0.01458 -> +0.00554  diff -0.00905
+UK100 PEP stress A9   n 161->160  media -0.11306 -> -0.11339  diff -0.00032
+UK100 PEP stress A10  n 704->704  media -0.14635 -> -0.14494  diff +0.00141
+UK100 FTMO base   A7   n 107->108  media -0.10569 -> -0.09758  diff +0.00811
+     2022-07-05 16:00:00  R codice +1.2104 (TEMPO)  R variante +1.5020 (CHIUSURA)
+     2022-09-14 15:00:00  R codice -0.4738 (CHIUSURA)  R variante -0.0244 (CHIUSURA)
+     2022-09-16 18:30:00  R codice +nan (-)  R variante +0.0292 (CHIUSURA)
+UK100 FTMO stress A7   n 108->109  media -0.16696 -> -0.15819  diff +0.00877
+GER40 PEP base   B1   n 40->40  media -0.06565 -> -0.05616  diff +0.00949
+     2023-09-04 18:00:00  R codice -0.1845 (TEMPO)  R variante +0.1952 (CHIUSURA)
+GER40 PEP stress B1   n 40->40  media -0.08148 -> -0.07169  diff +0.00979
+US500 PEP base   B2   n 32->32  media +0.12736 -> +0.09925  diff -0.02811
+     2022-01-10 17:30:00  R codice +0.9849 (TEMPO)  R variante +0.0853 (CHIUSURA)
+US500 PEP stress B2   n 32->32  media +0.08115 -> +0.05381  diff -0.02733
+US100 PEP base   B3   n 70->70  media +0.06821 -> +0.06462  diff -0.00360
+     2020-03-16 23:00:00  R codice +0.7811 (TEMPO)  R variante +0.5293 (CHIUSURA)
+US100 PEP stress B3   n 70->70  media +0.04759 -> +0.04399  diff -0.00360

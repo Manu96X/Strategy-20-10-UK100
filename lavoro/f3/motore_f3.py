@@ -116,21 +116,43 @@ class Feed:
         k = self.k_giorno[i]
         return None if k < 0 else int(k)
 
-def barre_sessione(feed, tz, apre, chiude, festivi_loc):
-    """Barre H1 della sessione cash ancorate all'apertura (es. 09:30 -> 09:30-10:30 ...); ultima barra corta."""
+NYSE_ANTICIPATE = ["2017-07-03", "2017-11-24", "2018-07-03", "2018-11-23", "2018-12-24", "2019-07-03", "2019-11-29",
+                   "2019-12-24", "2020-11-27", "2020-12-24", "2021-11-26", "2022-11-25", "2023-07-03", "2023-11-24",
+                   "2024-07-03", "2024-11-29", "2024-12-24", "2025-07-03", "2025-11-28", "2025-12-24"]
+
+def chiusure_anticipate(cal, anni, festivi_loc):
+    """Giorni di chiusura anticipata della borsa cash -> minuto locale di chiusura (addendum 20/10/2026).
+    LSE: 24/12 e 31/12 feriali alle 12:30. NYSE: elenco ufficiale alle 13:00. Xetra: 24 e 31/12 sono festivi."""
+    out = {}
+    if cal == "ENG":
+        for y in anni:
+            for g in (24, 31):
+                d = pd.Timestamp(y, 12, g).date()
+                if d.weekday() < 5 and d not in festivi_loc: out[d] = 12 * 60 + 30
+    if cal == "NYSE":
+        for x in NYSE_ANTICIPATE: out[pd.Timestamp(x).date()] = 13 * 60
+    return out
+
+def barre_sessione(feed, tz, apre, chiude, festivi_loc, anticipate=None):
+    """Barre H1 della sessione cash ancorate all'apertura (es. 09:30 -> 09:30-10:30 ...); ultima barra corta.
+    anticipate: {data locale: minuto di chiusura} per i giorni di chiusura anticipata."""
     loc = barre.ora_locale(feed.m1.ts, tz)
     ah, am = map(int, apre.split(":")); ch, cm = map(int, chiude.split(":"))
     mins = loc.dt.hour * 60 + loc.dt.minute
     a0, c0 = ah * 60 + am, ch * 60 + cm
     data_loc = loc.dt.normalize()
-    sel = (mins >= a0) & (mins < c0) & loc.notna()
+    chiude_g = pd.Series(c0, index=loc.index)
+    if anticipate:
+        chiude_g = data_loc.dt.date.map(lambda d: anticipate.get(d, c0)).fillna(c0).astype(int)
+    sel = (mins >= a0) & (mins < chiude_g) & loc.notna()
     sel &= data_loc.dt.weekday < 5
     sel &= ~data_loc.dt.date.isin(festivi_loc)
     x = feed.m1[sel].copy()
     x["dl"] = data_loc[sel]; x["k"] = ((mins[sel] - a0) // 60).astype(int)
     g = x.groupby(["dl", "k"], sort=True)
     b = pd.DataFrame({"o": g.o.first(), "h": g.h.max(), "l": g.l.min(), "c": g.c.last(), "n_m1": g.size()}).reset_index()
-    fine_loc = b.dl + pd.to_timedelta(np.minimum(a0 + (b.k + 1) * 60, c0), unit="m")
+    c_b = b.dl.dt.date.map(lambda d: (anticipate or {}).get(d, c0)).astype(int)
+    fine_loc = b.dl + pd.to_timedelta(np.minimum(a0 + (b.k + 1) * 60, c_b), unit="m")
     b["fine_srv"] = locale_a_server(fine_loc, tz).values
     b["data"] = b.dl.dt.date
     b["dow"] = b.dl.dt.weekday
@@ -155,6 +177,8 @@ def indicatori(b, warmup=300):
     b["valida"] = (np.arange(len(b)) >= warmup) & b[["rsi", "atr", "sma"]].notna().all(axis=1)
     return b
 
+GAP_PROTOCOLLO = True   # addendum 20/10/2026: stop in gap = min(open, SL) - slippage, come scritto nel protocollo §3
+
 def simula(feed, i0, t_regola, d, tab_spread, sc, sl_prima=True):
     """Un trade long dall'M1 i0. Ritorna dict o None (non simulabile)."""
     ts = feed.ts
@@ -175,8 +199,11 @@ def simula(feed, i0, t_regola, d, tab_spread, sc, sl_prima=True):
     jsl = a[0] if len(a) else np.inf; jtp = b_[0] if len(b_) else np.inf
     slip = 0.0
     if jsl < np.inf and (jsl < jtp or (jsl == jtp and sl_prima)):
-        j = i0 + int(jsl); px = min(feed.o[j], SL - sc["slip"]); tipo = "SL"
-        slip = min(SL - px, sc["slip"])      # costo; l'eventuale gap oltre lo stop è movimento di prezzo
+        j = i0 + int(jsl); tipo = "SL"
+        if GAP_PROTOCOLLO:
+            px = min(feed.o[j], SL) - sc["slip"]; slip = sc["slip"]   # il gap oltre lo stop è movimento di prezzo
+        else:                                                           # versione della prima esecuzione (prima del controllo)
+            px = min(feed.o[j], SL - sc["slip"]); slip = min(SL - px, sc["slip"])
     elif jtp < np.inf:
         j = i0 + int(jtp); px = TP; tipo = "TP"
     else:
@@ -252,23 +279,26 @@ def giorno_ftmo(ts_ns):
     s = pd.Series(pd.to_datetime(np.asarray(ts_ns, dtype="int64")))
     return barre.ora_locale(s, "Europe/Prague").dt.date.values
 
-def statistiche(df, nboot=5000, seed=1):
+def statistiche(df, nboot=100000, seed=1):
     """df: trade con colonne R, ts_in, tipo, costo_R, anno."""
     out = {"n": len(df)}
     if len(df) == 0: return out
     R = df.R.to_numpy(); n = len(R); mu = R.mean(); sd = R.std(ddof=1) if n > 1 else np.nan
     gid = pd.factorize(giorno_ftmo(df.ts_in))[0]
     dev = pd.Series(R - mu).groupby(gid).sum().to_numpy()
-    se_c = np.sqrt((dev ** 2).sum()) / n
+    G = len(dev)
+    se_c = np.sqrt((dev ** 2).sum()) / n * (np.sqrt(G / (G - 1)) if G > 1 else np.nan)   # CR1 (addendum 20/10/2026)
     out.update(media=mu, sd=sd, t=mu / se_c if se_c > 0 else np.nan, t_iid=mu / (sd / np.sqrt(n)) if n > 1 else np.nan,
                n_req=(2 * sd / mu) ** 2 if mu > 0 else np.inf, win=(R > 0).mean(),
                somma=R.sum(), asimmetria=pd.Series(R).skew(), costo_R=df.costo_R.mean())
     rng = np.random.default_rng(seed); ug = np.unique(gid); somme = pd.Series(R).groupby(gid).sum().reindex(ug).to_numpy()
     cnt = pd.Series(1, index=range(n)).groupby(gid).sum().reindex(ug).to_numpy()
     bm = []
-    for _ in range(nboot):
-        k = rng.integers(0, len(ug), len(ug)); bm.append(somme[k].sum() / cnt[k].sum())
-    out["ic95"] = (float(np.percentile(bm, 2.5)), float(np.percentile(bm, 97.5)))
+    for blocco in range(0, nboot, 5000):
+        k = rng.integers(0, len(ug), (min(5000, nboot - blocco), len(ug)))
+        bm.append(somme[k].sum(axis=1) / cnt[k].sum(axis=1))
+    bm = np.concatenate(bm)
+    out["ic95"] = (float(np.percentile(bm, 2.5)), float(np.percentile(bm, 97.5))); out["boot_quota_le0"] = float((bm <= 0).mean())
     eq = np.cumsum(R[np.argsort(df.ts_in.to_numpy())]); out["dd_max"] = float((np.maximum.accumulate(np.r_[0, eq]) - np.r_[0, eq]).max())
     sgn = (R[np.argsort(df.ts_in.to_numpy())] <= 0).astype(int); mx = cur = 0
     for v in sgn: cur = cur + 1 if v else 0; mx = max(mx, cur)
