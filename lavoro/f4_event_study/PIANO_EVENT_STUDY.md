@@ -48,3 +48,6 @@ Dai PROMETTENTI e dagli INDIZI con meccanismo forte si scrive la **rosa di 3-6 i
 - indipendenza dai suoi EA;
 - perché non è una variante del già bocciato;
 - **potenza attesa sul campione di conferma 2024-2026**.
+
+## 4. Nota di trasparenza (20/10/2026, prima dei risultati dell'event study)
+Il test **E3** (notte lunedì → martedì sugli indici) è stato inserito dopo aver visto, nel controllo della trappola dei dividendi (`trappola_dividendi.py`, sui dati di scoperta), un gap medio positivo del martedì su UK100, GER40 e US500 (+0,07/+0,08%). È quindi un'ipotesi **già vista**: il suo p non è una prova; vale solo come conferma nel campione 2024-2026.
