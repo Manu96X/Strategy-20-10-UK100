@@ -1,0 +1,33 @@
+SIGILLO S1/S2 - creato 2026-10-20 16:15:30 UTC
+2dfa223376b8bb1343a30b10af4ff0ef82d2a8cb5128ae45832ec9583d02751b  scoperta/FRA40 m1 FTMO.csv
+fa9f20c553b7ea2035c42b575b0bf759d0681ef2951e17e91aa8b2955a360175  scoperta/US2000 m1 FTMO.csv
+da9154de46f3c3d535d3031eb14c4afbd08837f5b61b8d6df195adc4faa2f7be  scoperta/US2000 m1 Pepperstone.csv
+4557c62eae9dc076eb56908da010e56d8fb32b0022959f69e5baa1813fb5712f  scoperta/US30 Pepperstone m1.csv
+d33bed721d7397b74ea82f4595cdd7752b6e69e04cafc6d2b6ed45e289ad24ea  validazione_2024/FRA40 m1 FTMO.csv
+d626f4032e1aa3a7fa0330b021719b441e0a6dfa092d650196a83963acf5cb6d  validazione_2024/GER40 FTMO m1.csv
+dd49c829ba3c2c869d0ea59bee342305ac60e625d2a83b8ac71d3042ee25c9a9  validazione_2024/GER40 Pepperstone m1.csv
+28c3de16a8cd1cbcb55e9c970102de36acb0fef03e32f68b66660d69e3e3323d  validazione_2024/NAS100 m1 - FTPepperstone.csv
+22c7f3247779a7e5e3b4ebb2e5df1de8364249adcf76e2b4d50eb05e68593135  validazione_2024/UK100 FTMO m1.csv
+99c51166936ab27a00d1ac5b1a87f86a853a5d86047df075c7e777f2bf48f365  validazione_2024/UK100 Pepperstone m1.csv
+07dd95c9a7140aa334e9f8135abb40cd6be67bea19b2892a5b933a5d9a2ffd9c  validazione_2024/US100 m1 - FTMO.csv
+3082472fd18a3b7db0540954395f04c5329c5510c1b0d0fa03053f417f4d2bba  validazione_2024/US2000 m1 FTMO.csv
+8040874fe78d9398a66c577a7e413f4cde76361a6252c5e9231a100dc475911b  validazione_2024/US2000 m1 Pepperstone.csv
+5530502dab5b5bd033965eb757fa67a6a8e39061c211ecd9c327f5df28c0ee22  validazione_2024/US30 Pepperstone m1.csv
+dfa22da1bd3de7e3cb59066db1a24b7fae5f0048519b687c9bab9b5c6244aae7  validazione_2024/US500 m1 - FTMO.csv
+f8a703384e3a91addf51b1b9f3dc47ca26dd7f2fa6ee7e99c828d4d1ade2c439  validazione_2024/US500 m1 - Pepperstone.csv
+scoperta/FRA40 m1 FTMO.csv: 2018.01.02 -> 2023.12.29
+scoperta/US2000 m1 FTMO.csv: 2018.01.23 -> 2023.12.29
+scoperta/US2000 m1 Pepperstone.csv: 2017.01.03 -> 2023.12.29
+scoperta/US30 Pepperstone m1.csv: 2017.01.03 -> 2023.12.29
+validazione_2024/FRA40 m1 FTMO.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/GER40 FTMO m1.csv: 2023.11.01 -> 2024.12.30
+validazione_2024/GER40 Pepperstone m1.csv: 2023.11.01 -> 2024.12.30
+validazione_2024/NAS100 m1 - FTPepperstone.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/UK100 FTMO m1.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/UK100 Pepperstone m1.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/US100 m1 - FTMO.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/US2000 m1 FTMO.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/US2000 m1 Pepperstone.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/US30 Pepperstone m1.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/US500 m1 - FTMO.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/US500 m1 - Pepperstone.csv: 2023.11.01 -> 2024.12.31

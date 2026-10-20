@@ -29,7 +29,7 @@
    - US100: **fisso a 1,45** in orario USA, **1,90** prima dell'apertura (anche nel minuto dei dati delle 15:30 server), **2,08** dopo la chiusura cassa.
    - Oro: 0,60-0,63, p90 **0,86** nel minuto delle notizie.
    - Nel 2022 lo spread si allargava nel minuto delle notizie (max 2,1 contro 0,6); nel 2026 no.
-5. **Trappole di fuso**: forex e metalli FTMO seguono l'ora legale europea fino al 2019; il calendario economico è sempre NY+7. Ogni istante va fissato in ora di New York.
+5. **Trappole di fuso**: forex e metalli FTMO seguono l'ora legale europea fino al 2019. Il calendario economico esportato è in **UTC+3 fisso** (corretto il 20/10/2026: non è NY+7, da ottobre a marzo è sfasato di un'ora). Ogni istante va fissato in ora di New York.
 
 ## 3. Strade proposte (in ordine di priorità)
 

@@ -1,0 +1,5 @@
+2019-03-11..22 (attesa Atene) corr per sfasamento (min): {-60: -0.767, 0: 0.0, 60: 0.004} -> Atene (NY+6)
+2019-10-28..11-01 corr per sfasamento (min): {-60: -0.908, 0: -0.03, 60: -0.002} -> Atene (NY+6)
+2020-03-09..27 corr per sfasamento (min): {-60: -0.006, 0: -0.873, 60: -0.006} -> NY+7
+2020-10-26..30 corr per sfasamento (min): {-60: -0.018, 0: -0.91, 60: -0.01} -> NY+7
+2021-03-15..26 (attesa NY+7) corr per sfasamento (min): {-60: -0.007, 0: -0.921, 60: 0.003} -> NY+7
