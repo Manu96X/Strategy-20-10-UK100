@@ -1,0 +1,45 @@
+SIGILLO H1 - creato 2026-10-20 15:23:07 UTC
+0437592f356c6f388c2f3d7eb459f65fd556d663629dd4fa9580d96d381329a0  scoperta/AUDUSD m1 FTMO.csv
+b47399f8ac3fdc409d2a5ebbbbfff18276507057aee96775e2b42169933035a9  scoperta/EURUSD m1 FTMO.csv
+1659567a92f89dd0eab059c44b2e0d834d3640662f188a344fe47e3947806a15  scoperta/GBPUSD m1 FTMO.csv
+506db32026a5412fba6f5ae13c48c9edd28cc76777612a01d33e6989d4528075  scoperta/USDCAD m1 FTMO.csv
+cf0eabc77bc0c94d7733e20d1b8922716aaa3987e95559a305ded9457b36bacf  scoperta/USDCHF m1 FTMO.csv
+ea9d075045ffda2ec199eba17b374951ed066c3d70758dc88061e7d4e53092c6  scoperta/USDJPY m1 FTMO.csv
+cbb90e910abd94369cb601120f988580c30989baefee21f95cf610839c362a42  scoperta/USDX pepperstone m1.csv
+0242ce811cdbdab2a9889a5f33f5990a6ec8018241ceae0a05ddfc47271a8109  scoperta/XAG-USD FTMO m1.csv
+0e700dc79d61111ddc0af14e259e3a7a1d7c457f92dd2625ec2a2e86afc66dda  scoperta/XAG-USD Pepperstone m1.csv
+3fbe10166cc7b012c0ecc85cdf72075d5226bf4f1f1ed035459f6d45fa6f2352  scoperta/XAU-USD FTMO m1.csv
+734e71f6b6a78cb6326f9ae6a858bdabdaef10cf94c8977be6707740728e646b  scoperta/XAU-USD Pepperstone m1.csv
+9706e3c9e0cd0a193969a79522402cc8d65ebee7ff1b9fe53fc6714cab983b99  validazione_2024/AUDUSD m1 FTMO.csv
+f4ba622bf0a3b6cb7735cad497b131c6ad768637613858aaa7da7b91191407df  validazione_2024/EURUSD m1 FTMO.csv
+e4123ac2b46610a6914a323d33cff7e1e2967539e1e2ceee70c1c40fcbc7e46e  validazione_2024/GBPUSD m1 FTMO.csv
+e48436c5fe097034645dd105da6c58106455d21718aa3cf6326801dbdc22ba03  validazione_2024/USDCAD m1 FTMO.csv
+a6ac290d8a175e0dc18c5315d9d20d6462f18977dbebc97d2a4faf95536ade7a  validazione_2024/USDCHF m1 FTMO.csv
+69862e651875844cd6e3cd28cdac0e25a278f05a3ca34aea336f39b8ff460d9d  validazione_2024/USDJPY m1 FTMO.csv
+e30c9cff4a8087dd512a9f2923d8bcee9478127de2ffa39776c0d46626ea703f  validazione_2024/USDX pepperstone m1.csv
+9618374d420fe472216d517356bf47d63c2f12cde246bdaaac3871970aca0ed3  validazione_2024/XAG-USD FTMO m1.csv
+a9c32aec50ac630f4fcf8045f36220727432b4d289b078bb688f19f7720d0fbe  validazione_2024/XAG-USD Pepperstone m1.csv
+c0dfb731cde70a6722031955e829060ec1864dea593683419631f382943ff815  validazione_2024/XAU-USD FTMO m1.csv
+cd5e95f0b93e16944297b7d8aaf47233d89ceb41495aff5641b06522888fd459  validazione_2024/XAU-USD Pepperstone m1.csv
+scoperta/AUDUSD m1 FTMO.csv: 2015.01.02 -> 2023.12.29
+scoperta/EURUSD m1 FTMO.csv: 2015.01.02 -> 2023.12.29
+scoperta/GBPUSD m1 FTMO.csv: 2015.01.02 -> 2023.12.29
+scoperta/USDCAD m1 FTMO.csv: 2015.01.02 -> 2023.12.29
+scoperta/USDCHF m1 FTMO.csv: 2015.01.02 -> 2023.12.29
+scoperta/USDJPY m1 FTMO.csv: 2002.01.01 -> 2023.12.29
+scoperta/USDX pepperstone m1.csv: 2017.01.03 -> 2023.12.29
+scoperta/XAG-USD FTMO m1.csv: 2017.01.03 -> 2023.12.29
+scoperta/XAG-USD Pepperstone m1.csv: 2017.01.03 -> 2023.12.29
+scoperta/XAU-USD FTMO m1.csv: 2017.01.03 -> 2023.12.29
+scoperta/XAU-USD Pepperstone m1.csv: 2017.01.03 -> 2023.12.29
+validazione_2024/AUDUSD m1 FTMO.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/EURUSD m1 FTMO.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/GBPUSD m1 FTMO.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/USDCAD m1 FTMO.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/USDCHF m1 FTMO.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/USDJPY m1 FTMO.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/USDX pepperstone m1.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/XAG-USD FTMO m1.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/XAG-USD Pepperstone m1.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/XAU-USD FTMO m1.csv: 2023.11.01 -> 2024.12.31
+validazione_2024/XAU-USD Pepperstone m1.csv: 2023.11.01 -> 2024.12.31
