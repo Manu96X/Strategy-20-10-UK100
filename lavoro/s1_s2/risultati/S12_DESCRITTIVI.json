@@ -1,0 +1,70 @@
+{
+ "placebo|S2|EUROPA|c=0.00|X1|PLACEBO": {
+  "n": 1633,
+  "netto_base_z": -0.01312013283629956,
+  "lordo_z": -0.002266553392796296
+ },
+ "placebo|S2|EUROPA|c=0.10|X1|PLACEBO": {
+  "n": 848,
+  "netto_base_z": -0.017670617235399314,
+  "lordo_z": -0.00636005589083304
+ },
+ "placebo|S2|USA|c=0.00|X1|PLACEBO": {
+  "n": 1619,
+  "netto_base_z": -0.019924064457964966,
+  "lordo_z": -0.00425613062211707
+ },
+ "placebo|S2|USA|c=0.10|X1|PLACEBO": {
+  "n": 852,
+  "netto_base_z": -0.01482348665890839,
+  "lordo_z": 0.0023305945736267707
+ },
+ "asta_pesante|S2|EUROPA|c=0.00|X1": {
+  "n_pesanti": 32,
+  "lordo_pesanti": 0.02415415692406251,
+  "lordo_altri": -0.006815524637076836
+ },
+ "asta_pesante|S2|EUROPA|c=0.00|X2": {
+  "n_pesanti": 0,
+  "lordo_pesanti": null,
+  "lordo_altri": -0.02470456292440988
+ },
+ "asta_pesante|S2|EUROPA|c=0.10|X1": {
+  "n_pesanti": 23,
+  "lordo_pesanti": 0.0354741951121184,
+  "lordo_altri": -0.009273455120903138
+ },
+ "asta_pesante|S2|EUROPA|c=0.10|X2": {
+  "n_pesanti": 0,
+  "lordo_pesanti": null,
+  "lordo_altri": -0.010135318218246215
+ },
+ "asta_pesante|S2|USA|c=0.00|X1": {
+  "n_pesanti": 32,
+  "lordo_pesanti": -0.05380780447363237,
+  "lordo_altri": -0.004978460047319359
+ },
+ "asta_pesante|S2|USA|c=0.00|X2": {
+  "n_pesanti": 0,
+  "lordo_pesanti": null,
+  "lordo_altri": 0.006822299480888894
+ },
+ "asta_pesante|S2|USA|c=0.10|X1": {
+  "n_pesanti": 26,
+  "lordo_pesanti": -0.07637360598475279,
+  "lordo_altri": -0.004634835191200261
+ },
+ "asta_pesante|S2|USA|c=0.10|X2": {
+  "n_pesanti": 0,
+  "lordo_pesanti": null,
+  "lordo_altri": 0.018484664979315644
+ },
+ "senza_UK100_mercoledi|S2|EUROPA|c=0.00|X2": {
+  "n": 1135,
+  "netto_base_z": -0.052294186505817034
+ },
+ "senza_UK100_mercoledi|S2|EUROPA|c=0.10|X2": {
+  "n": 496,
+  "netto_base_z": -0.026313881018467287
+ }
+}
