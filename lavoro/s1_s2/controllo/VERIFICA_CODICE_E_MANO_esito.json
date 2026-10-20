@@ -1,0 +1,180 @@
+{
+  "summary": "Revisione avversaria del codice S1/S2 e controllo a mano su righe grezze",
+  "agentCount": 2,
+  "logs": [],
+  "result": [
+    {
+      "lente": "codice",
+      "problemi": [
+        {
+          "gravita": "minore",
+          "dove": "s12_comune.py, sigma_giornaliera, righe 103-108 (dropna sui prezzi del giorno d, poi reindex(d.index).ffill().reindex(giorni))",
+          "problema": "Il codice calcola sigma_d solo se esiste un prezzo valido alle 16:00 (o all'asta) dello stesso giorno d. Il protocollo invece dice che sigma_d è 'nota prima del giorno d' e usa i rendimenti fino a d-1. C'è anche un secondo effetto: se il rendimento del giorno d non è valido (salto di più di 4 giorni), il ffill prende la sigma di un giorno prima, quindi più vecchia di un rendimento. Non c'è anticipo di informazione: l'errore va solo verso dati più vecchi o eventi persi.",
+          "prova": "Ho rifatto sigma_d da zero, partendo dal CSV grezzo (/tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4-56e7-9055-9f1cda27903e/scratchpad/verifica_s12/codice/sigma_ind.py). EURUSD: 836/836 identiche (scarto massimo 5e-14). US100: diverse 2 su 499 (0,4%, scarto massimo 2,7%). GER40: 0,7% (massimo 3,8%). US30: 0,6% (massimo 19,5%). Gli eventi S1 con prezzi validi ma sigma mancante sono 31, 56, 31, 29, 30 e 23 per strumento. Quasi tutti cadono nei primi 20 giorni di riscaldamento. Fuori dal riscaldamento se ne perdono circa 38 strumento-evento. Esempi: GBPUSD, 19 venerdì fra aprile e settembre 2019, quasi tutti NFP (il file FTMO di quel periodo il venerdì finisce alle 22:00 server, quindi manca il prezzo delle 16:00 NY); XAU e US100 nei giorni a chiusura anticipata (2018-11-23, 2019-07-03, 2023-11-24).",
+          "cambia_il_verdetto": "No. Riguarda meno dell'1% delle osservazioni ed è indipendente dalla direzione dei rendimenti. Il lordo aggregato resta circa 0."
+        },
+        {
+          "gravita": "minore",
+          "dove": "s12_test.py, righe 364-378 (S12_MANCANTI) e protocollo §6, ultima riga",
+          "problema": "Per X2 la 'quota mancanti' mette al denominatore anche i giorni in cui X2 non è definita per costruzione: i venerdì e i giorni seguiti da un giorno non consecutivo. Conta come mancanti anche i giorni di riscaldamento di sigma. Così compaiono per quasi tutti gli anni valori sopra il 10% che non segnalano veri buchi nei dati. Inoltre il codice non fa la 'ripetizione senza quell'anno, solo descrittiva' prevista dal §6.",
+          "prova": "S12_MANCANTI.csv: per X2 di tutti gli indici, in tutti gli anni, la quota è circa 0,20-0,24, cioè circa un giorno su cinque (il venerdì). Con il mio conteggio (addendum.py), i giorni consecutivi senza prezzo X2 sono pochissimi: US500 0 su 687, US100 6 su 1288, US2000 13 su 1292, UK100 3 su 1301. I casi veri sopra il 10% vengono dal riscaldamento del primo anno (per esempio FRA40 2021 al 27%, cioè 20 giorni su 77) e da GBPUSD 2019 (19,6%, dati non M1 a gennaio-febbraio 2019 e venerdì troncati).",
+          "cambia_il_verdetto": "No. È solo descrittivo e non entra nei cancelli."
+        },
+        {
+          "gravita": "minore",
+          "dove": "s12_test.py, righe 305-309 e 324 (cancello Feed)",
+          "problema": "Il segno del lordo FTMO calcolato sugli eventi comuni viene confrontato con lordo_z, cioè il lordo aggregato di tutti gli strumenti su tutti gli eventi. Il confronto più coerente con il protocollo ('stesso segno ... sugli stessi eventi o giorni del periodo comune') sarebbe con conc_lordo_pep: il codice lo calcola ma non lo usa.",
+          "prova": "conc_ok = (conc_n < 100) | (sign(conc_lordo_ftmo) == sign(lordo_z)). Per esempio, in S1|c=0.10|H120 il lordo_z è -0,0004, mentre conc_lordo_pep e conc_lordo_ftmo valgono +0,011 e +0,012.",
+          "cambia_il_verdetto": "No. Nessuna configurazione supera BH, quindi il cancello 8 non conta mai."
+        },
+        {
+          "gravita": "minore",
+          "dove": "s12_test.py, s2_indice e trade_s2 (X1 e ingresso di S2)",
+          "problema": "In S2 le notizie vietate fermano solo X2. Non c'è nessun controllo sull'ingresso né sull'uscita X1, mentre il §2 dice 'notizie vietate (per uscite e ingressi)'. Il protocollo è ambiguo, perché il §4 prevede il limite solo per X2.",
+          "prova": "Trade con una notizia vietata fra l'ingresso e X1 (addendum.py): GER40 16 su 882, UK100 23 su 1594, FRA40 6 su 553, indici USA 1-2 ciascuno.",
+          "cambia_il_verdetto": "No. Tocca circa l'1-2% dei trade in Europa. Il lordo X1 di S2 è negativo (t del lordo da -1,1 a -1,8)."
+        },
+        {
+          "gravita": "minore",
+          "dove": "s12_test.py, s2_indice, righe 177-178 (consecutivo calcolato su g, che esclude le mezze sedute)",
+          "problema": "Se il giorno di borsa successivo è una mezza seduta (2-3 luglio, 23-24 dicembre e simili), l'uscita X2 non c'è, anche se quel giorno ha una pre-apertura normale.",
+          "prova": "g = giorni_borsa(...) toglie NYSE_ANTICIPATE e il 24 e 31 dicembre, quindi nxt salta quel giorno e consecutivo diventa False. Si perdono pochi giorni all'anno.",
+          "cambia_il_verdetto": "No."
+        },
+        {
+          "gravita": "minore",
+          "dove": "s12_comune.py, prezzo_a, riga 84; s12_test.py, stat_test, riga 253",
+          "problema": "Due difetti senza effetto sui risultati. (1) In prezzo_a, m1_ok viene controllato solo sulla barra scelta e non sulla barra di continuità in [t-5, t). (2) Con n < 30, stat_test restituisce un dizionario senza le altre chiavi, quindi il codice si fermerebbe con un errore. Non succede mai, perché n è sempre almeno 562.",
+          "prova": "Lettura del codice.",
+          "cambia_il_verdetto": "No."
+        }
+      ],
+      "controlli_superati": [
+        "Sigilli: lo sha256 dei 4 file in dati_s12/scoperta, di NAS100, GER40, US500 e UK100 Pepperstone (dati_scoperta_tutti), di EURUSD, GBPUSD e USDJPY FTMO e di XAU Pepperstone (dati_h1) coincide con SIGILLO.txt. La cache usata dal codice dà gli stessi prezzi del CSV grezzo: la sigma di EURUSD ricalcolata dal grezzo coincide al 100%.",
+        "Calendario: UTC = ora_server - 3 ore, poi zoneinfo New York (righe 57-61 di calendario()). Verificato sui dati con il picco di |rendimento a 1 minuto| alla barra T, in modo indipendente dal codice: picco alla barra 0 per EURUSD, USDJPY, XAU (Pepperstone e FTMO), US100 e US500, sia prima sia dopo il 2020, sia nelle settimane di DST allineato sia in quelle disallineate. Esempio: EURUSD prima del 2020, settimane disallineate, 4,70 bps alla barra 0 contro 1,19 alla -1 e 0,97 alla -60.",
+        "Forex FTMO: ora di Atene fino al 31/12/2019 e NY+7 dopo. Lo confermano il picco sopra e le righe grezze del CPI del 12/03/2019 (settimana disallineata): EURUSD con lo scatto alle 14:30 server, NAS100 Pepperstone alle 15:30. NFP del 03/11/2017, 02/11/2018 e 01/11/2019 su NAS100: picco di tick alle 15:30, quindi NY+7.",
+        "a_server per gli indici europei e USA: picco all'apertura cassa (09:30 NY, 09:00 Berlino e Parigi, 08:00 Londra) alla barra 0 per tutti i feed Pepperstone e FTMO, anche nelle settimane disallineate. GER40 il 16/03/2021: lo spread passa da 12 a 20 alle 19:30 server, cioè la chiusura delle 17:30 di Berlino. I 28 test unitari del progetto passano.",
+        "prezzo_a e prezzo_prima: corrispondono alla definizione (open della prima barra in [t, t+5] con una barra in [t-5, t); close dell'ultima barra in [t-5, t); giorno M1 con passo modale 1). Ricostruzioni a mano dal grezzo: EURUSD 12/03/2019 (P_pre 1,12653, P_in 1,12745, r0 0,0008163, uscita H30 1,12811); US100 stesso giorno (r0 0,0017282); EURUSD 03/02/2016 09:45 con uscita anticipata a E-3 = 09:57 NY (16:57 Atene, open 1,10083); GER40 16/03/2021 (m = -0,0003433, ingresso all'open delle 19:36, X1 all'open delle 20:15, X2 all'open delle 10:55 del giorno dopo = 08:55 Berlino). Tutti coincidono con S1_trade.csv e S2_trade.csv.",
+        "sigma_d: nessun anticipo di informazione (rolling(20).std().shift(1) sui soli rendimenti validi, ddof = 1, tolleranza 15 minuti, salto massimo 4 giorni). La replica indipendente coincide esattamente su EURUSD.",
+        "Regola d'uscita min(T+H, E-3) con E = prima notizia vietata strettamente dopo T, e niente trade se l'uscita cade prima di T+4. Conflitto d'ingresso in [T+1, T+5]: verificato con un calcolo separato; i conflitti sono davvero 0, perché lo scarto minimo fra T e la notizia vietata successiva è di 15 minuti.",
+        "Notizie vietate: importanza 3 con ORARIO_ESATTO, più 'Dichiarazione del FOMC', 'Verbali FOMC' e 'Proiezioni Economiche del FOMC'. I nomi esistono nel calendario: 87, 87 e 42 righe, con importanza 2. Le valute per strumento coincidono con il §2. Gli eventi S1 sono 1955 (pari alla stima del §7) e corrispondono ai 31 event_id. I giorni di chiusura NYSE sono esclusi per US100 e US500.",
+        "Segni: su tutte le righe dei file dei trade ho verificato q = segno(r0) in S1 e q = -segno(m) in S2, lordo = q × ln(P_out/P_in) e netto = lordo - costo.",
+        "Costi ricalcolati a mano. Lato che paga: long allo spread d'ingresso, short a quello d'uscita. Esempi: EURUSD long 0,337 + 0,4435 (commissione) = 0,7807 bps, stress 1,549 bps; US100 1,093 / 2,24 bps; UK100 short X2: 1,953 - 0,11 (swap a credito) = 1,843 bps, stress 3,42 bps; US500 long X2: 0,912 + 2,27 = 3,18 bps. Swap solo su X2 dal lunedì al giovedì, perché X2 richiede il giorno di calendario seguente. Gli spread della tabella hanno valori plausibili e un andamento per orario coerente con le sessioni cassa europee in ora di NY, quindi la conversione server - 7 h è corretta.",
+        "Esclusioni dell'addendum 1: trascurabili (S2: 1 trade su US2000 e 1 su UK100; S1: nessuna, perché le uscite non cadono nella pausa).",
+        "Aggregazione per evento o giorno (media degli z degli strumenti); t CR1 per data di NY con correzione G/(G-1); p unilaterale da Student con G-1 gradi di libertà; BH separata per ipotesi (m = 6 e m = 8); cancelli di metà (01/01/2020), anni (almeno 3 anni con almeno 10 osservazioni e almeno il 60% positivi), coerenza e influenza. Ho ricalcolato n, media z, t e p di tutti i 14 test dai file dei trade: coincidono fino alla quarta cifra decimale.",
+        "Robustezza del verdetto. Con costi zero, il t del lordo più alto è +0,72 in S1 (p unilaterale circa 0,24) e +1,00 in S2 (circa 0,16); la soglia BH del primo rango è 0,0167 (S1) e 0,0125 (S2). Anche con il segno invertito (S1 come reversione, S2 come momentum) i t del lordo più alti sono 1,44 (S1, p circa 0,075) e 1,79 (S2 USA X1, p circa 0,037): nessuno passa BH, e i costi sono più grandi del lordo. Quindi né un errore sui costi né un errore di segno potrebbero nascondere una configurazione PROMOSSA."
+      ],
+      "giudizio": "Ho controllato il codice riga per riga contro il protocollo e con verifiche indipendenti sui dati sigillati: picchi di volatilità agli orari delle notizie e delle aperture cassa, trade ricostruiti a mano dalle righe grezze, sigma rifatta da zero, statistiche ricalcolate e sigilli verificati. Fusi, conversione del calendario, prezzi, segni, regole d'ingresso e d'uscita, costi, aggregazione e statistiche sono implementati correttamente. Ho trovato solo difetti minori: sigma richiede il prezzo del giorno d stesso, la quota dei mancanti per X2 è gonfiata, il confronto del cancello Feed è impreciso, X1 di S2 non è limitato dalle notizie, e c'è qualche giorno perso per le mezze sedute. Nessuno tocca più dell'1-2% delle osservazioni e nessuno può nascondere un effetto. Il lordo aggregato è circa 0 in tutti i 14 test (t del lordo da -1,8 a +1,0): né costi zero né il segno invertito porterebbero un test oltre la soglia BH. Il verdetto è confermato: tutti i 14 primari sono NULLI, S1 e S2 non sono valide, si passa a S3."
+    },
+    {
+      "lente": "mano",
+      "problemi": [
+        {
+          "gravita": "importante",
+          "dove": "s12_comune.py, FEED/a_server: regime 'NY7' per i feed Pepperstone XAU, US100 (NAS100), US2000, US30, UK100. Si sommano a S1 (XAU, US100) e a S2 (US100, US2000, US30, UK100). Il controllo del fuso F0 (lavoro/f0/RAPPORTO_F0.md §4) confrontava solo NY+7 con l'ora europea, quindi non poteva vedere NY+8.",
+          "problema": "Dal 06/11/2017 al 26/02/2018 compreso questi feed Pepperstone sono in ora server NY+8 (UTC+3 fisso), non NY+7. Il codice legge ogni istante un'ora prima del dovuto. In S1, P_pre, P_in e uscite cadono 1 h prima della notizia. In S2, m, ingresso e X1 sono misurati alle 15:00 NY invece che alle 16:00 (UK100: alle 15:30 di Londra invece che alle 16:30). Anche sigma è calcolata all'ora sbagliata.",
+          "prova": "(a) NAS100 Pep, picco di tick volume dell'apertura cassa: alle 17:30-17:31 server in 19-22 giorni al mese da 11/2017 a 02/2018, alle 16:30 negli altri mesi. Per giorno: 03/11/2017 ancora a 16:30, dal 06/11/2017 alle 17:30, dal 27/02/2018 di nuovo alle 16:30. Lo stesso schema si vede su US2000 Pep, US30 Pep e UK100 Pep. (b) XAU Pep, NFP del 05/01/2018. Il codice legge 15:30 server: C(15:29)=1317.79, O(15:33)=1317.76, tv 174, quindi r0 = -0,2 bps e nessun trade. Il vero NFP è alle 16:30 server: C(16:29)=1317.13, poi 16:30 O 1317.12 → C 1321.58 con tv 1131, O(16:33)=1321.10. Il r0 vero è +30,1 bps (circa 0,70 sigma): sarebbe stato un trade sia con c=0,10 sia con c=0,25. (c) Correlazione al minuto XAU Pep / EURUSD FTMO: il ritardo migliore è +60 min ogni giorno dal 06/11/2017 al 26/02/2018 (0,44-0,60) e 0 dal 27/02/2018 (0,61). (d) Trade colpiti: in S1 solo 9 trade spuri (XAU 11/01/2018 08:30 e 25/01/2018 10:00, US100 01/02/2018 09:45 a c=0,10), mentre ne servivano circa 60 veri. In S2 605 trade, dal 2,3% al 3,9% di ogni test aggregato.",
+          "cambia_il_verdetto": "No. Ho tolto i trade colpiti e ricalcolato dalla colonna netto_base: tutti i 14 test restano nulli. La variazione maggiore è S2|USA|c=0.10|X2: netto z da -0,0148 a -0,0032 (t da -0,80 a -0,18). Per arrivare a t ≈ 2,24 i 35 giorni corretti dovrebbero valere in media circa +1,2 z ciascuno, cosa non plausibile. L'errore va comunque corretto (per quel periodo regime NY+8 oppure esclusione) e i numeri vanno rigenerati prima di comunicarli. Vanno controllate anche le repliche cieche, che probabilmente hanno lo stesso errore, e i lavori precedenti sugli stessi file Pepperstone del 2017-2018 (F3 UK100, H1)."
+        },
+        {
+          "gravita": "importante",
+          "dove": "s12_comune.py, regime 'FX_FTMO' applicato a GBPUSD FTMO (/home/user/dati_h1/scoperta/GBPUSD m1 FTMO.csv) nel 2019",
+          "problema": "Dall'08/02/2019 al 20/09/2019 i timestamp di GBPUSD FTMO sono in UTC+1: 1 h dietro Atene d'inverno, 2 h d'estate. È una fonte diversa, arrivata dopo le giornate non M1 di gennaio-febbraio, con colonna SPREAD fino a 50. Dal 23/09/2019 il file è in NY+7, non in ora di Atene, e la differenza conta nella settimana 28/10-01/11/2019. In quei mesi tutti i prezzi GBPUSD di S1 sono presi 1-2 ore dopo l'evento vero.",
+          "prova": "(a) Correlazione mensile dei rendimenti al minuto GBPUSD/EURUSD: ritardo migliore -60 min a feb-mar 2019 (0,26-0,32, contro circa 0 a ritardo 0), -120 min da aprile ad agosto 2019 (0,27-0,39), 0 dal 23/09/2019 (0,37). In tutti gli altri mesi 2016-2023 il ritardo è 0. Per giorno: 08/02/2019 a -60, 20/09/2019 a -120, 23/09/2019 a 0. (b) ISM del 05/06/2019 alle 10:00 NY. EURUSD ha il picco alle 17:00 di Atene (tv 518). GBPUSD alle 17:00 ha tv 91 e nessun movimento; il picco è alle 15:00 (tv 131, -14 pip). Il trade nel CSV (GBPUSD 05/06/2019 10:00, r0 -0,000701) si riproduce esattamente da C(16:59)=1.27050 e O(17:03)=1.26961: è misurato 2 ore dopo l'evento. (c) NFP del 05/07/2019: GBPUSD non ha picco alle 15:30 (tv 76, contro 522 su EURUSD). (d) FOMC del 30/10/2019 su GBPUSD: reazione con NY+7 = 8,1 contro 0,3 con Atene. Impatto: 13 trade GBPUSD spuri a c=0,10 e 2 a c=0,25; ne mancano circa 45-50 veri. Nota: S12_MANCANTI dà per GBPUSD 2019 il 19,6% di mancanti, oltre il 10%: il protocollo §6 chiede la ripetizione descrittiva senza quell'anno.",
+          "cambia_il_verdetto": "No. Riguarda circa 50 eventi su circa 1.400 nell'aggregato S1, che ha lordo circa 0 e netto negativo (t da -0,4 a -4,6); senza i trade colpiti i t cambiano meno di 0,15. Va però corretto, escludendo GBPUSD dall'08/02/2019 al 20/09/2019 oppure applicando l'offset giusto, e documentato."
+        },
+        {
+          "gravita": "minore",
+          "dove": "s12_comune.a_server, regime FX_FTMO (EURUSD, GBPUSD, USDJPY), settimana di disallineamento di ottobre-novembre 2017",
+          "problema": "Dal 30/10/2017 all'01/11/2017 (probabilmente anche il 02/11) i tre file FX FTMO sono in NY+7, non nell'ora di Atene (NY+6) che il codice assume. Il 03/11/2017 sono di nuovo in ora di Atene.",
+          "prova": "FOMC dell'01/11/2017 alle 14:00 NY: tv di EURUSD alle 20:00 server (Atene) = 42, alle 21:00 (NY+7) = 302. Rapporto di reazione NY+7/Atene: 5,4/1,0 su EURUSD, 8,3/0,9 su GBPUSD, 5,5/1,8 su USDJPY. La correlazione EURUSD/USDX Pep è a ritardo 0 il 30/10 e l'01/11 (-0,83 e -0,88). Il 03/11 è a -60 (-0,89), con l'NFP alle 14:30 su EURUSD. Trade spuri nel CSV: EURUSD 31/10 10:00 e 01/11 09:45, GBPUSD 31/10 10:00, USDJPY 31/10 10:00. Il FOMC dell'01/11/2017 è perso.",
+          "cambia_il_verdetto": "No: sono 4 trade spuri e qualche evento perso."
+        },
+        {
+          "gravita": "minore",
+          "dove": "s12_test.py, trade_s2: lo swap X2 è applicato a tutti i trade X2 (sw = SWAP_X2[...]), anche quando l'uscita anticipata E-3 cade prima del rollover delle 17:00 NY",
+          "problema": "Quando una notizia vietata anticipa l'uscita X2 nello stesso pomeriggio, la posizione si chiude in giornata. Il codice addebita (long) o accredita (short) comunque lo swap di una notte.",
+          "prova": "Ricostruito dal calendario sui trade X2 del CSV: GER40 210 su 927 e UK100 396 su 1.777 (circa il 22%) chiudono prima delle 17:00 NY; per gli indici USA circa lo 0,1%. Esempi controllati a mano. UK100 12/03/2019 long: X2 chiuso alle 12:57 NY (19:57 server, O=7159.0) per l'asta dei titoli a 10 anni USA delle 13:00, costo 0,000440 di cui 0,000236 di swap. UK100 14/06/2023 short: chiuso alle 13:57 NY per il FOMC, con credito di 0,000011.",
+          "cambia_il_verdetto": "No. Il lordo non cambia (Europa X2 ha lordo z negativo, da -0,010 a -0,025); il netto Europa X2 è sottostimato di circa 0,5 bps in media."
+        },
+        {
+          "gravita": "minore",
+          "dove": "s12_comune.sigma_giornaliera: s.reindex(d.index).ffill().reindex(giorni)",
+          "problema": "sigma_d dipende dai soli rendimenti fino a d-1, ma risulta NaN, ed esclude il trade, se manca il prezzo delle 16:00 NY (o dell'asta) del giorno d stesso. È una selezione che usa un'informazione successiva all'evento.",
+          "prova": "Lettura del codice: d contiene solo i giorni con prezzo valido. Dopo il secondo reindex sui giorni di calendario il ffill non si riapplica, quindi un giorno di evento senza prezzo alle 16:00 resta NaN.",
+          "cambia_il_verdetto": "No: in pratica tocca pochissimi giorni (sedute ridotte o buchi di dati)."
+        }
+      ],
+      "controlli_superati": [
+        "S1, ricostruiti a mano dalle righe grezze (grep/awk), con prezzi, orario server, r0, q e rendimenti per H30/H60/H120 tutti identici al CSV. Trade EURUSD dell'NFP invernale del 05/01/2018 (ora di Atene = NY+7 = 15:30): P_pre=C(15:29)=1.20453, P_in=O(15:33)=1.20729, r0=+0.002289, ret -0.001716 / -0.003743 / -0.003743. H120 è anticipata a 09:57 NY (16:57) per l'ISM delle 10:00 e per coincidenza ha lo stesso open di 16:30.",
+        "NFP estivo del 05/07/2019 (EEST = NY+7, 15:30): EURUSD (r0 -0.001137, ret -0.000791/-0.002135/-0.003427), XAU Pep (P_in 1396.63, r0 -0.012042, ret 0.003053/-0.002430/-0.004147) e US100 Pep (P_in 7836.1, r0 -0.001199, ret -0.002939/-0.004169/-0.006761): tutti esatti.",
+        "Forex in settimana di disallineamento: GBPUSD sul CPI del 13/03/2018 (Atene UTC+2, 08:30 EDT = 14:30 server): P_pre 1.38977, P_in 1.39226, r0 0.001790, ret 0.002009/0.002031/0.002117 (H120 alle 10:30 NY = 16:30). EURUSD sull'NFP dell'01/11/2019 (14:30 server): r0 -0.001310, ret -0.000395/0.001481/0.001140 (H120 anticipata a 09:42 per il PMI delle 09:45); trade delle 10:00 dello stesso giorno (16:00 server) con r0 0.001470 e ret corretti.",
+        "FOMC delle 14:00 del 30/10/2019 in settimana di disallineamento: USDJPY (20:00 Atene) con P_in 108.915, r0 0.000367 e ret 0.000358 per tutte le H, perché l'uscita è anticipata alle 14:27 NY per la conferenza stampa. Assenza di trade verificata a mano per EURUSD (|r0| 0,7 bps < 2,1), XAU (5,1 < 6,0 bps) e US100 (2 bps).",
+        "XAU e US100 dell'01/11/2019: XAU alle 08:30 (P_in 1505.07, r0 -0.003926) e alle 10:00 (1512.88, 0.001667), US100 alle 08:30 (8122.5, 0.003144) e alle 10:00 (8151.3, 0.001780): tutte le uscite sono esatte. US100 delle 10:00 escluso giustamente a c=0,25 (0.00178 < 0,25 × 0.00855).",
+        "Uscite anticipate per notizia successiva: XAU, ADP del 30/10/2019 alle 08:15, uscita a O(15:27) prima del PIL delle 08:30, ret 0.000583 per tutte le H. XAU, PIL delle 08:30, H120 anticipata a 10:27 per l'EIA delle 10:30, ret 0.001214. Esclusione per 'evento allo stesso minuto' e per conflitto in [T+1, T+5] coerente.",
+        "Sigma ricostruita a mano in 2 casi: EURUSD 05/01/2018 = 0.0033207 (ultima barra prima delle 16:00 NY con tolleranza di 15 minuti, 20 rendimenti con salto ≤ 4 giorni, ddof=1) e US100 Pep 01/11/2019 = 0.0085503: identiche al CSV.",
+        "Costi verificati sul CSV: EURUSD long (spread d'ingresso della fascia evento 0,337 + commissione 5/(1e5 × P) = 0,751 bps); USDJPY short (spread del contesto d'uscita NY|09:00 o NY|09:30 + 0,5 bps); XAU short (NY|hh:mm + 6/(100 × P)); US100 short; stress = 1,5× o 3× + 0,6 bps.",
+        "S2, ricostruiti a mano con P(prima di A), P(prima di A-15), P_in, X1, X2 e m identici al CSV. US100 Pep 12/03/2019 (disallineamento; 22:59/22:44/23:01/23:45): m -0.000319, X1 0.001194, X2 anticipata a 08:27 NY (15:27) per il PPI, 0.004753. UK100 Pep 12/03/2019 (16:30 Londra = 12:30 EDT = 19:30 server): m -0.000098, X1 0, X2 anticipata alle 12:57 NY per l'asta dei titoli a 10 anni, 0.000140.",
+        "GER40 Pep 22/03/2022 (17:30 CET = 19:30 server): m -0.001833, X1 0.001311, X2 08:55 CET = 10:55 server, 0.001621. US500 Pep 22/03/2022: m -0.000443, X1 -0.000111, X2 anticipata per Powell (08:00 NY) a 14:57 server, -0.005063. US2000 Pep 03/11/2021 c=0,10: m -0.001538, X1 0.000916, X2 0.003657 (anticipata a 08:27). UK100 14/06/2023: m 0.000289, X1 -0.000776, X2 anticipata per il FOMC, -0.000342. FRA40 FTMO 14/06/2023 X1: m 0.000546, ret -0.001979.",
+        "Costi S2 verificati: spread S2|ingresso, S2|X1 e S2|X2 o NY|hh:mm in caso di X2 anticipata, più lo swap (long +0,0227%, short -0,0011%).",
+        "Calendario: UTC = ora_server - 3 confermato su NFP 2018/2019, FOMC 2019, ISM e ADP (picchi di tick volume ai minuti attesi). Forex FTMO in ora di Atene nel 2016-2019 (tranne le eccezioni segnalate) e NY+7 dal 2020; USDJPY sempre allineato a EURUSD; feed indici FTMO (US100, US500, US2000, UK100, GER40, FRA40) e US500/GER40 Pep in NY+7 in tutti gli anni.",
+        "Aggregazione e statistica: ricalcolate indipendentemente dal CSV dei trade (media per evento/giorno degli z netti, t CR1 per data NY), riproducono esattamente netto_base_z e t di S12_PRIMARI per tutti i 14 test.",
+        "Segni: q = sign(r0) in S1 e q = -sign(m) in S2, lordo = q·ret, i long pagano lo spread d'ingresso e gli short quello d'uscita: corretti in tutti i casi controllati."
+      ],
+      "giudizio": "Il calcolo è corretto: in tutti i 30 casi controllati a mano (16 trade S1, 13 trade S2, 2 sigma e diversi non-trade) il codice prende le barre giuste secondo le sue regole di fuso. Sono esatti prezzi, r0/m, q, rendimenti, uscite anticipate, costi e sigma. Aggregazione e t CR1 si riproducono esattamente.\n\nHo però trovato errori di fuso nei dati sigillati che il controllo F0 non poteva vedere:\n1. Feed Pepperstone (XAU, NAS100, US2000, US30, UK100) in NY+8 dal 06/11/2017 al 26/02/2018.\n2. GBPUSD FTMO in UTC+1 dall'08/02 al 20/09/2019, poi in NY+7 fino a fine 2019.\n3. Forex FTMO in NY+7 dal 30/10 all'01/11/2017.\n\nIn quei periodi i prezzi sono letti 1-2 ore fuori dall'evento o dall'asta. Riguardano circa l'1-4% delle osservazioni di ogni test e non nascondono un effetto: senza i trade colpiti tutti i 14 test restano NULLI, e S2|USA|c=0.10|X2 passa a netto z -0,003 con t -0,18. Ci sono anche due difetti minori di costi/selezione: lo swap addebitato su X2 chiusi in giornata e sigma che dipende dal prezzo delle 16:00 del giorno stesso.\n\nIl verdetto «S1 e S2 non valide → S3» resta. Prima di comunicare i numeri conviene correggere i tre periodi (offset giusto o esclusione), rigenerare i risultati, controllare che le repliche cieche non abbiano lo stesso errore e annotarlo nel rapporto. Script di verifica in /tmp/claude-0/-home-user-Strategy-20-10-UK100/3f32bb43-76e4-56e7-9055-9f1cda27903e/scratchpad/verifica_s12/ (righe.sh, fuso_scan.py, fuso_giorno.py, lagfast.py, lag1.py, disall.py, swap_x2.py, sens.py)."
+    }
+  ],
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Verifica"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "verifica:codice",
+      "phaseIndex": 1,
+      "phaseTitle": "Verifica",
+      "agentId": "a41e3555d15c88d58",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1792514912381,
+      "queuedAt": 1792514912349,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Ho controllato il codice riga per riga contro il protocollo…",
+      "promptPreview": "Contesto: un event study pre-registrato (protocollo /home/user/Strategy-20-10-UK100/lavoro/s1_s2/PROTOCOLLO_S1_S2.md, con l'addendum 1 in fondo) e' stato eseguito da /home/user/Strategy-20-10-UK100/lavoro/s1_s2/s12_test.py e s12_comune.py (costi da risultati/COSTI_TABELLA_CONGELATA.csv, prodotta da costi_s12.py). Risultati in /home/user/Strategy-20-10-UK100/lavoro/s1_s2/risultati/ (S12_PRIMARI.csv…",
+      "promptFramed": true,
+      "lastProgressAt": 1792515489144,
+      "tokens": 183911,
+      "toolCalls": 34,
+      "durationMs": 576762,
+      "resultPreview": "{\"problemi\":[{\"gravita\":\"minore\",\"dove\":\"s12_comune.py, sigma_giornaliera, righe 103-108 (dropna sui prezzi del giorno d, poi reindex(d.index).ffill().reindex(giorni))\",\"problema\":\"Il codice calcola sigma_d solo se esiste un prezzo valido alle 16:00 (o all'asta) dello stesso giorno d. Il protocollo invece dice che sigma_d è 'nota prima del giorno d' e usa i rendimenti fino a d-1. C'è anche un seco…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "verifica:mano",
+      "phaseIndex": 1,
+      "phaseTitle": "Verifica",
+      "agentId": "a41b7a61fd470a5e3",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1792514912382,
+      "queuedAt": 1792514912349,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Il calcolo è corretto: in tutti i 30 casi controllati a man…",
+      "promptPreview": "Contesto: un event study pre-registrato (protocollo /home/user/Strategy-20-10-UK100/lavoro/s1_s2/PROTOCOLLO_S1_S2.md, con l'addendum 1 in fondo) e' stato eseguito da /home/user/Strategy-20-10-UK100/lavoro/s1_s2/s12_test.py e s12_comune.py (costi da risultati/COSTI_TABELLA_CONGELATA.csv, prodotta da costi_s12.py). Risultati in /home/user/Strategy-20-10-UK100/lavoro/s1_s2/risultati/ (S12_PRIMARI.csv…",
+      "promptFramed": true,
+      "lastProgressAt": 1792516230910,
+      "tokens": 250319,
+      "toolCalls": 76,
+      "durationMs": 1317653,
+      "resultPreview": "{\"problemi\":[{\"gravita\":\"importante\",\"dove\":\"s12_comune.py, FEED/a_server: regime 'NY7' per i feed Pepperstone XAU, US100 (NAS100), US2000, US30, UK100. Si sommano a S1 (XAU, US100) e a S2 (US100, US2000, US30, UK100). Il controllo del fuso F0 (lavoro/f0/RAPPORTO_F0.md §4) confrontava solo NY+7 con l'ora europea, quindi non poteva vedere NY+8.\",\"problema\":\"Dal 06/11/2017 al 26/02/2018 compreso que…"
+    }
+  ],
+  "totalTokens": 434230,
+  "totalToolCalls": 110
+}
