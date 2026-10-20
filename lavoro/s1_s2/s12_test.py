@@ -96,7 +96,7 @@ def s1_strumento(strumento, feed, ev, viet):
     E["conflitto"] = k5 > k1
     # prima notizia vietata dopo T (minuto diverso da T)
     kn = np.searchsorted(Vv, T.values, side="right")
-    nxt = pd.DatetimeIndex(np.where(kn < len(Vv), Vv[np.clip(kn, 0, len(Vv) - 1)], np.datetime64("NaT")))
+    nxt = pd.DatetimeIndex(np.where(kn < len(Vv), Vv[np.clip(kn, 0, len(Vv) - 1)], np.datetime64("NaT", "ns")))
     E["E_next"] = nxt
     srv = lambda x: C.a_server(pd.DatetimeIndex(x), NY, reg)
     E["P_pre"] = C.prezzo_prima(df, srv(T))
@@ -126,6 +126,10 @@ def trade_s1(E, strumento):
             x["q"] = np.sign(x.r0)
             x["ret"] = np.log(x[f"P_out_{H}"] / x.P_in)
             cin = [ctx_evento(t) for t in x.T_ny]; cout = [ctx_ny(t) for t in pd.DatetimeIndex(x[f"t_out_{H}"])]
+            # addendum 1 (prima dei numeri): uscita in un orario in cui il simbolo FTMO non quota -> trade escluso
+            ok = np.array([(strumento, ci) in TAB and (strumento, co) in TAB for ci, co in zip(cin, cout)])
+            x = x[ok].copy(); cin = list(np.array(cin)[ok]); cout = list(np.array(cout)[ok])
+            if not len(x): continue
             for scen in ("base", "stress"):
                 sp = np.where(x.q > 0, spread(strumento, cin, scen), spread(strumento, cout, scen))
                 cst = sp + commissione(strumento, x.P_in) + (2 * SLIP_STRESS if scen == "stress" else 0.0)
@@ -177,7 +181,7 @@ def s2_indice(indice, feed, viet, placebo=False):
         V = vietate_per(viet, indice).values
         tin = d.t_in_ny.values
         k = np.searchsorted(V, tin, side="right")
-        primo = np.where(k < len(V), V[np.clip(k, 0, len(V) - 1)], np.datetime64("NaT"))
+        primo = np.where(k < len(V), V[np.clip(k, 0, len(V) - 1)], np.datetime64("NaT", "ns"))
         cap = pd.DatetimeIndex(primo) - pd.Timedelta(minutes=3)
         tx2 = pd.DatetimeIndex(np.where(~pd.isna(cap) & (cap < t_pre_ny), cap.values, t_pre_ny.values))
         ok = consecutivo & (tx2 >= pd.DatetimeIndex(tin) + pd.Timedelta(minutes=1))
@@ -206,6 +210,10 @@ def trade_s2(d, indice, placebo=False):
                 cout = ["S2|placebo_X1" if placebo else "S2|X1"] * len(x)
             else:
                 cout = [ctx_ny(t) if lim else "S2|X2" for t, lim in zip(pd.DatetimeIndex(x.t_X2_ny), x.X2_limitata)]
+            # addendum 1 (prima dei numeri): uscita in un orario in cui il simbolo FTMO non quota -> trade escluso
+            ok = np.array([(indice, ci) in TAB and (indice, co) in TAB for ci, co in zip(cin, cout)])
+            x = x[ok].copy(); cin = list(np.array(cin)[ok]); cout = list(np.array(cout)[ok])
+            if not len(x): continue
             sw = np.zeros(len(x))
             if usc == "X2":
                 sl, ss = SWAP_X2[indice]; sw = np.where(x.q > 0, sl, ss)

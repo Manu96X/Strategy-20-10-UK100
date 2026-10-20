@@ -185,3 +185,9 @@ Si riportano anche, per test e anno, la quota di eventi persi per prezzo mancant
 - Revisore avversario del codice.
 - Controllo a mano di eventi e giorni campione sulle righe grezze.
 - I numeri si comunicano solo se originale e repliche coincidono.
+
+## Addendum 1 — 20/10/2026, PRIMA dei numeri
+La prima esecuzione (16:50 UTC) si è interrotta con un errore **prima di produrre qualunque risultato**: nessun numero è stato salvato o letto.
+- **Causa**: un'uscita X2 anticipata prima di una notizia vietata (es. un discorso del presidente Fed alle 17:30 NY) cadeva nella pausa giornaliera del simbolo FTMO (16:50 → 18:05 NY), dove la tabella dei costi non ha contesto, perché FTMO non quota.
+- **Regola aggiunta, per S1 e S2**: se l'ingresso o l'uscita cadono in un orario in cui il simbolo FTMO non quota (nessun contesto nella tabella congelata), il trade è **escluso**: su FTMO non sarebbe eseguibile.
+- Le repliche cieche, già avviate, potrebbero aver trattato questi pochi casi in un altro modo: le differenze vanno riconciliate caso per caso.
