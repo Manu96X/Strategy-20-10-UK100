@@ -1,0 +1,17 @@
+STOP OUT: 50.00%
+MARGIN CALL: 100.00%
+Livelli espressi: in PERCENTUALE del livello di margine
+Conto: 1514768646 (demo)
+Server: FTMO-Demo
+Societa': FTMO Global Markets Ltd
+Leva: 1:30
+Gestione posizioni: hedging (posizioni separate)
+Bilancio: 96384.34 USD
+Equity: 96384.34 USD
+Margine usato: 0.00 USD
+Margine libero: 96384.34 USD
+Livello di margine attuale: nessuna posizione aperta
+Margine iniziale / di mantenimento del conto: 0.00 / 0.00 USD
+Ora del server: 2026.10.13 14:27:52
+Ora del PC: 2026.10.13 13:27:52
+Terminale: FTMO Global Markets Ltd, build 6230

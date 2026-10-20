@@ -1,0 +1,91 @@
+# RL_chiusure_speciali.csv - per RoundLevels_XAUUSD_R8D_chiusure (variante _chiusure della R8D), 16/10/2026
+# Chiusure SPECIALI del mercato dell'oro (XAUUSD) di almeno 2 ore: festivi, vigilie, chiusure anticipate.
+# Formato: una riga per chiusura, aaaa.mm.gg HH:MM = ora del SERVER FTMO in cui il mercato CHIUDE
+# (il minuto dopo l'ultima barra M1). Dopo l'ora, separato da uno spazio, un commento libero.
+# NON servono i venerdi' normali: la chiusura del weekend (venerdi' 23:50) l'EA la legge da sola
+# dall'orario di trading del simbolo (lun-ven 01:05-23:50 server).
+# L'EA non apre nuovi ingressi nei 125 minuti (2 h 05') prima di ogni chiusura. Le uscite restano libere.
+# Le righe che iniziano con # sono commenti. L'EA rilegge il file da solo a ogni nuova giornata.
+#
+# === STORICO: ricavato dalle barre M1 FTMO dell'oro (01/09/2021-29/09/2026) ===
+# Serve alla prova nel tester (stesse chiusure del Monte Carlo, gap_cut); sul conto vero non ha effetto.
+# Alcune chiusure del 2022 (venerdi' 22:33-23:11, mercoledi' 10 e 17/08) sono probabili buchi nei dati: tenute per prudenza.
+2021.09.06 20:00 lun, chiuso 5.0 h, riapre mar 07/09 01:00
+2021.11.25 19:45 gio, chiuso 5.3 h, riapre ven 26/11 01:05
+2021.11.26 20:30 ven, chiuso 52.6 h, riapre lun 29/11 01:05
+2021.12.23 23:50 gio, chiuso 73.2 h, riapre lun 27/12 01:05
+2022.01.17 21:30 lun, chiuso 3.6 h, riapre mar 18/01 01:05
+2022.02.11 23:01 ven, chiuso 50.1 h, riapre lun 14/02 01:05
+2022.02.21 21:15 lun, chiuso 3.8 h, riapre mar 22/02 01:05
+2022.02.25 23:01 ven, chiuso 50.1 h, riapre lun 28/02 01:05
+2022.03.11 23:11 ven, chiuso 49.9 h, riapre lun 14/03 01:05
+2022.04.14 23:50 gio, chiuso 73.2 h, riapre lun 18/04 01:05
+2022.05.30 21:30 lun, chiuso 3.6 h, riapre mar 31/05 01:05
+2022.06.03 23:01 ven, chiuso 50.1 h, riapre lun 06/06 01:05
+2022.06.20 21:30 lun, chiuso 3.6 h, riapre mar 21/06 01:05
+2022.07.04 21:30 lun, chiuso 3.6 h, riapre mar 05/07 01:05
+2022.07.22 23:02 ven, chiuso 50.0 h, riapre lun 25/07 01:05
+2022.08.05 22:34 ven, chiuso 50.5 h, riapre lun 08/08 01:05
+2022.08.10 23:01 mer, chiuso 2.1 h, riapre gio 11/08 01:05
+2022.08.17 23:02 mer, chiuso 2.0 h, riapre gio 18/08 01:05
+2022.08.26 22:33 ven, chiuso 50.5 h, riapre lun 29/08 01:05
+2022.09.05 20:15 lun, chiuso 4.8 h, riapre mar 06/09 01:05
+2022.11.24 21:30 gio, chiuso 3.6 h, riapre ven 25/11 01:05
+2022.11.25 20:30 ven, chiuso 52.6 h, riapre lun 28/11 01:05
+2023.01.16 21:16 lun, chiuso 3.8 h, riapre mar 17/01 01:05
+2023.02.20 21:16 lun, chiuso 3.8 h, riapre mar 21/02 01:05
+2023.04.06 23:50 gio, chiuso 73.2 h, riapre lun 10/04 01:05
+2023.05.29 20:15 lun, chiuso 4.8 h, riapre mar 30/05 01:05
+2023.06.19 21:30 lun, chiuso 3.6 h, riapre mar 20/06 01:05
+2023.07.04 21:30 mar, chiuso 3.6 h, riapre mer 05/07 01:05
+2023.09.04 21:30 lun, chiuso 3.6 h, riapre mar 05/09 01:05
+2023.11.23 21:30 gio, chiuso 3.6 h, riapre ven 24/11 01:05
+2023.11.24 20:45 ven, chiuso 52.3 h, riapre lun 27/11 01:05
+2024.01.15 21:30 lun, chiuso 3.6 h, riapre mar 16/01 01:05
+2024.02.19 21:15 lun, chiuso 3.8 h, riapre mar 20/02 01:05
+2024.03.28 23:50 gio, chiuso 73.2 h, riapre lun 01/04 01:05
+2024.05.27 21:30 lun, chiuso 3.6 h, riapre mar 28/05 01:05
+2024.06.19 21:30 mer, chiuso 3.6 h, riapre gio 20/06 01:05
+2024.07.04 21:30 gio, chiuso 3.6 h, riapre ven 05/07 01:05
+2024.09.02 20:30 lun, chiuso 4.6 h, riapre mar 03/09 01:05
+2024.11.28 21:30 gio, chiuso 3.6 h, riapre ven 29/11 01:05
+2024.11.29 21:45 ven, chiuso 51.3 h, riapre lun 02/12 01:05
+2024.12.24 20:45 mar, chiuso 28.3 h, riapre gio 26/12 01:05
+2024.12.31 23:50 mar, chiuso 25.2 h, riapre gio 02/01 01:05
+2025.01.20 21:30 lun, chiuso 3.6 h, riapre mar 21/01 01:05
+2025.02.17 21:30 lun, chiuso 3.6 h, riapre mar 18/02 01:05
+2025.04.17 23:50 gio, chiuso 73.2 h, riapre lun 21/04 01:05
+2025.05.26 21:30 lun, chiuso 3.6 h, riapre mar 27/05 01:05
+2025.06.19 21:30 gio, chiuso 3.6 h, riapre ven 20/06 01:05
+2025.07.04 20:00 ven, chiuso 53.1 h, riapre lun 07/07 01:05
+2025.09.01 21:30 lun, chiuso 3.6 h, riapre mar 02/09 01:05
+2025.11.27 21:30 gio, chiuso 3.6 h, riapre ven 28/11 01:05
+2025.11.28 21:45 ven, chiuso 51.3 h, riapre lun 01/12 01:05
+2025.12.24 20:45 mer, chiuso 28.3 h, riapre ven 26/12 01:05
+2025.12.31 23:50 mer, chiuso 25.2 h, riapre ven 02/01 01:05
+2026.01.19 21:30 lun, chiuso 3.6 h, riapre mar 20/01 01:05
+2026.02.16 21:30 lun, chiuso 3.6 h, riapre mar 17/02 01:05
+2026.04.02 23:50 gio, chiuso 73.2 h, riapre lun 06/04 01:05
+2026.05.25 21:30 lun, chiuso 3.6 h, riapre mar 26/05 01:05
+2026.06.19 20:00 ven, chiuso 53.1 h, riapre lun 22/06 01:05
+2026.07.03 20:00 ven, chiuso 53.1 h, riapre lun 06/07 01:05
+2026.09.07 21:30 lun, chiuso 3.6 h, riapre mar 08/09 01:05
+#
+# === FUTURO: PREVISIONE PRUDENTE, DA CONFERMARE CON FTMO ===
+# Per ogni festivo: l'ora di chiusura PIU' ANTICIPATA vista per lo stesso festivo nel 2021-2026.
+# Quando FTMO comunica gli orari dei festivi (mail o sito), scrivere qui l'ora indicata da FTMO
+# (ora del server) e aggiungere le chiusure che mancano. Ultima data: 23/12/2027, poi l'EA avvisa.
+2026.11.26 19:45 Thanksgiving (gio); 2022-2025 alle 21:30, 2021 alle 19:45
+2026.11.27 20:30 venerdi' dopo Thanksgiving; 2024-2025 alle 21:45, 2021-2023 alle 20:30-20:45
+2026.12.24 20:45 vigilia di Natale (gio), 25/12 chiuso; 2024-2025 alle 20:45
+2026.12.31 23:50 San Silvestro (gio), 01/01/2027 chiuso; 2024-2025 alle 23:50
+2027.01.18 21:15 Martin Luther King Day (lun); 2022-2026 alle 21:15-21:30
+2027.02.15 21:15 Presidents' Day (lun); 2022-2026 alle 21:15-21:30
+2027.03.25 23:50 Giovedi' Santo, Venerdi' Santo 26/03 chiuso; 2022-2026 alle 23:50
+2027.05.31 20:15 Memorial Day (lun); 2023 alle 20:15, altri anni 21:30
+2027.06.18 20:00 Juneteenth osservato di venerdi'; 2026 (ven) alle 20:00
+2027.07.05 20:00 Independence Day osservato di lunedi'; 2025-2026 alle 20:00, prima 21:30
+2027.09.06 20:00 Labor Day (lun); 2021 alle 20:00, poi 20:15-21:30
+2027.11.25 19:45 Thanksgiving (gio); come sopra
+2027.11.26 20:30 venerdi' dopo Thanksgiving; come sopra
+2027.12.23 23:50 Natale osservato venerdi' 24/12 (chiuso), come nel 2021
